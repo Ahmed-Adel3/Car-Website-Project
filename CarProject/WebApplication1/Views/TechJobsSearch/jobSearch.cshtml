@@ -1,0 +1,53 @@
+﻿@model   IQueryable<WebApplication1.Models.JobAdv>
+
+<section class="wrapper_404">
+    <h3 style="font-weight:bolder; font-size:30px">@Model.Count() Search Result Found</h3>
+    @foreach (var item in Model)
+    {
+
+        <div class="col-sm-4 col-xs-12">
+            <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+                <div class="img-wrapper">
+                    <img src="~/images/car-workshop.jpg" class="img-responsive Recent-Car-resize size" alt="this is a title">
+
+                    <div class="overlay">
+                        <div class="buttons">
+
+                            @Ajax.ActionLink("Details", "jobDetails", "TechJobsSearch", new { id = item.JAid }, new AjaxOptions()
+                           {
+                               UpdateTargetId = "jobPopup",
+                               InsertionMode = InsertionMode.Replace,
+                               OnSuccess = "myfun()"
+
+
+                           }, new { @class = "btn " })  <br />  <br />
+                        </div>
+
+                    </div>
+                </div>
+                <figcaption>
+
+                    <h4>
+                        <a href="#">
+                            Name : @item.ApplicationUser.FirstName @item.ApplicationUser.LastName
+                        </a><br /><br />
+                    </h4>
+
+                    <h4>
+                        <a href="#">
+                            WorkShop Name : @item.WorkShopName
+                        </a><br /><br />
+                    </h4>
+                    <p>
+                        @item.TechJob.Jname
+                    </p>
+                </figcaption>
+
+            </figure>
+        </div>
+
+    }
+
+</section>
+
+

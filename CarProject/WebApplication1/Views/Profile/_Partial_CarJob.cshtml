@@ -1,0 +1,66 @@
+﻿@using WebApplication1.Models
+
+
+@if (ViewBag.caradv != null)
+{
+    foreach (var item in ViewBag.jobadv)
+    {
+    <div class="col-sm-6 col-xs-12">
+        <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+            <div class="img-wrapper">
+
+                <img src="~/images/car-workshop.jpg" class="img-responsive Recent-Car-resize" alt="this is a title">
+                <div class="overlay">
+                    <div class="buttons">
+                        @if (item.state == status.sold)
+                        {
+                            <a href="@Url.Action("RepublishJob", "Profile", routeValues: new {  id  = item.JAid })">
+                                Republish
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("SoldJob", "Profile", routeValues: new { id  = item.JAid })">
+                                Remove Job
+                            </a>
+                            @*<a href="@Url.Action("jobDetails", "TechJobsSearch", routeValues: new { id  = item.Jid })">
+                                Details
+                            </a>*@
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <figcaption>
+                <h4>
+                    <a href="#">
+                        @item.TechJob.Jname
+                    </a>
+                </h4>
+                <p>
+                    <strong>WorkShop Name</strong> @item.WorkShopName
+                </p>
+                <p>
+                    <strong>Description:</strong>
+                    @item.Description
+                </p>
+                
+               
+                <p>
+                    <strong>Address</strong>
+                    @item.Governrate.Gname : @item.City.CityName
+
+               </p>
+                <p>
+                    <strong>AdDate: </strong>
+                    @item.AdDate
+                </p>
+            </figcaption>
+        </figure>
+    </div>
+
+    }
+}
+
+
+

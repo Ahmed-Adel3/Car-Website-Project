@@ -1,0 +1,109 @@
+﻿@using WebApplication1.Models
+@if (ViewBag.caradv != null)
+{
+    foreach (var item in ViewBag.accadv)
+    {
+
+
+    <div class="col-sm-6 col-xs-12">
+        <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+            <div class="img-wrapper">
+
+                <img src="@item.Aphoto" class="img-responsive Recent-Car-resize" alt="this is a title" style="height: 249px; margin-left: 42px;">
+
+                <div class="overlay">
+                    <div class="buttons">
+                        @if (item.state == status.sold)
+                        {
+                            <a href="@Url.Action("RepublishAcc", "Profile", routeValues: new { id = item.AccId})">
+                                Republish
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("SoldAcc", "Profile", routeValues: new { id = item.AccId})">
+                                Mark As Sold
+                            </a>
+                            @*<a href="@Url.Action("accDetails", "AccessoriesSearch", routeValues: new { id = item.AccId })">
+                                Details
+                            </a>*@
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <figcaption>
+                <h4>
+                        @item.Accessory.AccTypeName
+                </h4>
+                <p>
+                    <strong>Price</strong>  @item.Price EGP
+                </p>
+            </figcaption>
+        </figure>
+    </div>
+
+    }
+}
+
+@*@foreach (var item in ViewBag.accadv)
+{
+    <div class="col-lg-8 col">
+       
+        @*<img src="@item.CarPhoto.First().Cphoto" alt="BMW" class="thumbnail brand" />*@
+        @*<h3 class="text-center">@item.Accessory.AccTypeName </h3>
+
+
+
+        <table class="table table-bordered table-hover table-condensed">
+            <tr>
+                <td>
+                    <strong>Status:</strong>
+                    @item.Status
+
+                </td>
+                <td>
+                    <strong>Photo:</strong>
+                    @item.Aphoto
+                </td>
+                <td>
+                    <strong>Price: </strong>
+                    @item.Price
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    <strong>AdDate: </strong>
+                    @item.AdDate
+                </td>
+                <td>
+                    <strong>TradeMark:</strong>
+                    @item.TradeMark
+                </td>
+                <td>
+                    <strong>Description: </strong>
+                    @item.Description
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <strong>Government: </strong>
+                    @item.Governrate.Gname
+                </td>
+               
+                <td>
+                    <strong>City: </strong>
+                    @item.City.CityName
+                </td>
+            </tr>
+           
+
+
+
+        </table>
+
+    </div>
+}*@
+

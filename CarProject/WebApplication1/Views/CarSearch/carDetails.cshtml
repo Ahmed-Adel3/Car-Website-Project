@@ -1,0 +1,204 @@
+﻿@model  WebApplication1.Models.CarAdv
+@{
+    ViewBag.Title = "carDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section header_css{
+    <link href="~/Content/pgwslider.css" rel="stylesheet" />
+    <style>
+        td {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 17px;
+        }
+    </style>
+
+}
+@section header_js{
+    <script src="~/Scripts/pgwslider.js"></script>
+    <script>
+        $(document).ready(function () {
+    $('.pgwSlider').pgwSlider();
+        });
+    </script>
+}
+
+
+
+<section class="wrapper_404" style="border:solid 2px black; padding: 90px 0px;">
+
+    @Html.Hidden("id", Model.Aid)
+    <div class="container" style="background-color:#ffc500;">
+
+        <div class="col-xs-12" style="text-align:center;padding-top:5px;padding-bottom:5px;">
+            <h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Advertisment Details</h2>
+        </div>
+
+    </div><br />
+
+    <!------------------------slider---------------------->
+    <div class="container">
+        <ul class="pgwSlider">
+            @foreach (var path in ViewBag.carPho)
+            {
+                <li><img src="@path.CPhoto" /></li>
+            }
+        </ul>
+
+    </div>
+    <!----------------------------------------------------->
+    <!------------------------Adv Details---------------------->
+
+
+    <br /><div class="container" style="background-color:#ffc500;">
+        <br /><div class="col-xs-6">
+
+            <h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">About @Model.Manufacturer.Name</h2>
+        </div>
+        <div class="col-xs-6" style="text-align:right;">
+            <h3 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> @Model.Price EGP</h3>
+        </div>
+        <table class="table table-striped table-bordered">
+
+            <tr>
+                <td><b>Description</b></td>
+                @if (@Model.Description == null)
+                {
+                    <td>No Description</td>
+                }
+                else
+                {
+                    <td>@Model.Description</td>
+                }
+
+            </tr>
+
+            <tr>
+                <td><b>Adv Date</b></td>
+                <td>@Model.AdDate</td>
+            </tr>
+            <tr>
+                <td><b>Brand</b></td>
+                <td>
+                    <img src="~/images/car_logos_2/(@Model.Mid).png" width="30" height="30" />&nbsp; @Model.Manufacturer.Name
+                </td>
+            </tr>
+            <tr>
+                <td><b>Model</b></td>
+                <td>@Model.CarModel.ModelName</td>
+            </tr>
+            <tr>
+                <td><b>Price</b></td>
+                <td>@Model.Price EGP</td>
+            </tr>
+            <tr>
+                <td><b>Model Year</b></td>
+                <td>@Model.Year</td>
+            </tr>
+            <tr>
+                <td><b>Cc</b></td>
+                <td>@Model.Cc</td>
+            </tr>
+            <tr>
+                <td><b>Km</b></td>
+                <td>@Model.Km</td>
+            </tr>
+            <tr>
+                <td><b>Color</b></td>
+                <td>@Model.Color</td>
+            </tr>
+            <tr>
+                <td><b>Air Device</b></td>
+                <td>@Model.AirDevice</td>
+            </tr>
+            <tr>
+                <td><b>Air Bag</b></td>
+                <td>@Model.AirBag</td>
+            </tr>
+            <tr>
+                <td><b>Sun Roof</b></td>
+                <td>@Model.SunRoof</td>
+            </tr>
+            <tr>
+                <td><b>Transmition</b></td>
+                <td>@Model.Transimition</td>
+            </tr>
+            <tr>
+                <td><b>Power</b></td>
+                <td>@Model.Power</td>
+            </tr>
+            <tr>
+                <td><b>Center Lock</b></td>
+                <td>@Model.CenterLock</td>
+            </tr>
+            <tr>
+                <td><b>Alarm</b></td>
+                <td>@Model.Alarm</td>
+            </tr>
+            <tr>
+                <td><b>Radio</b></td>
+                <td>@Model.Radio</td>
+            </tr>
+            <tr>
+                <td><b>ABS</b></td>
+                <td>@Model.ABS</td>
+            </tr>
+            <tr>
+                <td><b>Electric Window</b></td>
+                <td>@Model.ElectricWindow</td>
+            </tr>
+
+        </table>
+    </div>
+
+
+    <!---------------------------------------------------------->
+    <!------------------------User Datails---------------------->
+
+    <br /><div class="container" style="background-color:#ffc500;">
+        <br /><div class="col-xs-12">
+            <h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Owner InFo</h2>
+        </div>
+
+        <table class="table table-striped table-bordered">
+            @foreach (var us in ViewBag.user)
+            {
+                <tr>
+                    <td><b><span class="glyphicon glyphicon-user"></span> Name</b></td>
+                    <td>@us.FirstName  @us.LastName</td>
+                </tr>
+
+                <tr>
+                    <td><b><span class="glyphicon glyphicon-map-marker"></span> Address</b></td>
+                    <td>@us.Governrate.Gname - @us.City.CityName</td>
+                </tr>
+                <tr>
+                    <td><b><span class="glyphicon glyphicon-envelope"></span> E-mail</b></td>
+                    <td>@us.Email</td>
+                </tr>
+                <tr>
+                    <td><b><span class="glyphicon glyphicon-earphone"></span> Phone Number</b></td>
+                    <td>@us.Mobile1 - @us.PhoneNumber</td>
+                </tr>
+                <tr>
+                    <td><b><span class="glyphicon glyphicon-repeat"></span> Previous Advs</b></td>
+
+                    <td>
+                        @foreach (var ad in ViewBag.userAdvs)
+                        {
+                            <a href="~/CarSearch/carDetails/@ad.Aid">@ad.Manufacturer.Name - @ad.CarModel.ModelName</a> <br />
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+        <div style="text-align:right;">
+            <a href="~/CarSearch/CarIndex" class="btn" style="background-color:#333333;color:#ffc500;width:100px;">Back</a> <br /><br />
+
+            @*@Html.ActionLink("Back", "CarIndex", "CarSearch", new { @class = "btn" style="background-color:#ffc500" })  <br />  <br />*@
+        </div>
+    </div>
+
+
+</section>

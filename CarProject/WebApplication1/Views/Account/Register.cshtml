@@ -1,0 +1,213 @@
+﻿
+    @using WebApplication1.Models
+    @model RegisterViewModel
+    @{
+        ViewBag.Title = "Registeration";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    @section header_css {
+        <link href="~/Content/j-forms.css" rel="stylesheet" />
+        <link href="~/Content/Registeration_Style.css" rel="stylesheet" />
+        <link href="~/Content/Forms_style.css" rel="stylesheet" />
+    }
+@section header_js{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+    <section class="moduler registration-content ">
+        <div class="container">
+            <div class="col-md-2">
+
+
+                </div>
+            <div class="col-md-12">
+                <div class="content">
+                    <h1>Registration form</h1>
+                    <div class="main ">
+
+
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "contact-forms", role = "form", enctype = "multipart/form-data" } ))
+    {
+
+        @Html.AntiForgeryToken()
+        <h4>Create a New Account</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+                            <!-- start name -->
+                            <div class="first-line ">
+                                <div class="span6 main-row">
+                                    <label style="color:#ffc600; font-weight:bold">First Name:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        @Html.TextBoxFor(a => a.FirstName, new { @class = " form-control", placeholder = "First Name" })
+                                    </div>
+                                    <div style="color:coral;">@Html.ValidationMessageFor(a => a.FirstName)</div>
+                                </div>
+
+                                <div class="span6 main-row">
+                                    <label style="color:#ffc600; font-weight:bold">Last Name:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+                                        @Html.TextBoxFor(a => a.LastName, new { @class = " form-control", placeholder = "Last Name" })
+                                    </div>
+
+                                    <div style="color:coral;">@Html.ValidationMessageFor(a => a.LastName)</div>
+
+                                </div>
+                            </div>
+                            <!-- end name -->
+                                    <!-- start UserName-->
+        <div class="first-line ">
+            <div class="span8 main-row">
+                <label style="color:#ffc600; font-weight:bold">User Name:</label>
+                <div class="input-group">
+
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                    @Html.TextBoxFor(a => a.UserName, new { @class = " form-control", placeholder = "Username" })
+                </div>
+                <div style="color:coral;">@Html.ValidationMessageFor(a => a.UserName)</div>
+            </div>
+        </div>
+                            <!-- end UserName-->
+
+                            <!-- start email-->
+                            <div class="first-line ">
+                                <div class="span8 main-row">
+                                    <label style="color:#ffc600; font-weight:bold">Email:</label>
+                                    <div class="input-group">
+
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        @Html.TextBoxFor(a => a.Email, new { @class = " form-control", placeholder = "Email" })
+                                    </div>
+                                    <div style="color:coral;">@Html.ValidationMessageFor(a => a.Email)</div>
+                                </div>
+                            </div>
+                            <!-- end email-->
+                            <!-- start password -->
+                            <div class="first-line">
+                                <div class="span6 main-row">
+                                    <label style="color:#ffc600; font-weight:bold">Password:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        @Html.PasswordFor(a => a.Password, new { @class = " form-control", placeholder = "Password" })
+                                    </div>
+                                    <div style="color:coral;">@Html.ValidationMessageFor(a => a.Password)</div>
+
+                                </div>
+                                <div class="span6 main-row">
+                                    <label style="color:#ffc600; font-weight:bold">Confirm Password:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        @Html.PasswordFor(a => a.ConfirmPassword, new { @class = " form-control", placeholder = "Confirm_Password" })
+                                    </div>
+                                    <div style="color:coral;">@Html.ValidationMessageFor(a => a.ConfirmPassword)</div>
+                                </div>
+                            </div>
+                            <!-- end password -->
+                            <!-- start phone -->
+
+                            <div class="first-line">
+                                <div class="span6 main-row">
+                                    <label style="color:#ffc600; font-weight:bold">Mobile:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                        @Html.TextBoxFor(a => a.PhoneNumber, new { @class = " form-control", placeholder = "Mobile" })
+                                    </div>
+                                    <div style="color:coral;">@Html.ValidationMessageFor(a => a.PhoneNumber)</div>
+
+                                </div>
+                                <div class="span6 main-row">
+                                    <label style="color:#ffc600; font-weight:bold">Phone:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+                                        @Html.TextBoxFor(a => a.Mobile1, new { @class = " form-control", placeholder = "Phone" })
+                                    </div>
+                                    <div style="color:coral;">@Html.ValidationMessageFor(a => a.Mobile1)</div>
+                                </div>
+                            </div>
+                            <!-- end phone -->
+                            <!-- start address -->
+
+                            <div class="first-line">
+                                <div class="span6 main-row">
+                                    <label style="color:#ffc600; font-weight:bold">Your Governoment:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                        @Html.DropDownListFor(a => a.Gid, ViewBag.sel1 as SelectList, "Select Your Government", new { @class = " form-control" })
+                                    </div>
+                                    <div style="color:coral;">@Html.ValidationMessageFor(a => a.Gid)</div>
+                                </div>
+                               
+                                <div class="span6 main-row" style="color:#ffc600; margin-top: 23px;" id="d1">
+
+                                </div>
+
+
+                            </div>
+                            <!-- end address -->
+                            <!-- start files -->
+
+                            <div class="first-line ">
+                                <div class="span8 main-row">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>                                       
+                                            <input type="file" name="img" class="btn btn-warning" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- end files -->
+                            <!-- end /.content -->
+
+
+                            <button type="submit" class="btn btn-warning btn_submit">                             
+                                <span>Register</span>
+                            </button>
+
+                            <!-- end /.footer -->
+    }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+@section last_js{
+
+ 
+    <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-34160351-1']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+    </script>
+    <script>
+
+    $("#Gid").on("change", function () {
+        var z = $("#Gid").val();
+        $("#d1").load("/CarSearch/getcity/" + z);
+    })
+
+    </script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+}
+
+ 
+
+
+
+

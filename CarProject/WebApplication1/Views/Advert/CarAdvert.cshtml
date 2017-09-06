@@ -1,0 +1,279 @@
+﻿@using WebApplication1.Models
+@model CarAdv
+@using System.Data.Entity.Validation;
+
+@{
+    ViewBag.Title = "CarAdvert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header_css {
+
+    <link href="~/Content/j-forms.css" rel="stylesheet" />
+    <link href="~/Content/Forms_style.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <link href="~/Content/ToggleButtonsStyle.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+}
+
+<div class="container moduler content">
+    <section class="col-xs-12">
+        <section class="main w3l" style="width:80% ;clear:both;">
+            <h1> Add Car advertisement </h1>
+            <form class="contact-forms wthree " method="post" enctype="multipart/form-data">
+                <table class="table ">
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Manufacturer</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-wrench"></i></span>
+
+                                @Html.DropDownListFor(a => a.Mid, ViewBag.BrandsList as SelectList, "Select manufacturer", new { @class = "form-control" })
+                                <i></i>
+                            </div>
+                        </td>
+                        <td class="col-md-3">
+                            @*Validation*@
+                            <label style="color:coral;"> @Html.ValidationMessageFor(a => a.Mid)</label>
+                        </td>
+                    </tr>
+                    <tr id="m1">
+                       
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">CC</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-adjust"></i></span>
+                                @Html.TextBoxFor(a => a.Cc, new { @class = "form-control", placeholder = "Car CC" })
+                            </div>
+                        </td>
+                        <td class="col-md-3"></td>
+
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Year</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                @Html.TextBoxFor(a => a.Year, new { @class = "form-control", placeholder = "Manufactrue Year" })
+                            </div>
+                        </td>
+                        <td class="col-md-3">
+                            @*Validation*@
+                            <label style="color:coral;">  @Html.ValidationMessageFor(a => a.Year)</label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Driven KM</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+                                @Html.TextBoxFor(a => a.Km, new { @class = "form-control", placeholder = "Driven KM" })
+                            </div>
+                        </td>
+                        <td class="col-md-3"></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Color</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-certificate"></i></span>
+
+                                @Html.TextBoxFor(a => a.Color, new { @class = "form-control", placeholder = "Color" })
+                            </div>
+                        </td>
+                        <td class="col-md-3"></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Required Price</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                                @Html.TextBoxFor(a => a.Price, new { @class = "form-control", placeholder = "Price" })
+                            </div>
+                        </td>
+                        <td class="col-md-3">
+                            @*Validation*@
+                            <label style="color:coral;"> @Html.ValidationMessageFor(a => a.Price)</label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Transmission</label>
+                        </td>
+                        <td class="col-md-7 " style="color:white">
+                            @Html.RadioButtonFor(a => a.Transimition, "Auto") Auto<br />
+                            @Html.RadioButtonFor(a => a.Transimition, "Manule") Manual
+                        </td>
+                        <td class="col-md-3">
+                            @*Validation*@
+                            <label style="color:coral;">@Html.ValidationMessageFor(a => a.Transimition)</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">car features</label>
+                        </td>
+                        <td class="col-md-7">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <input name="Power" type="checkbox" value="true" /> Power
+                                        <input name="Power" type="hidden" value="false" />
+                                    </td>
+                                    <td>
+                                        <input name="AirDevice" type="checkbox" value="true" /> Air Condition
+                                        <input name="AirDevice" type="hidden" value="false" />
+                                    </td>
+                                    <td>
+                                        <input name="AirBag" type="checkbox" value="true" /> AirBag
+                                        <input name="AirBag" type="hidden" value="false" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input name="ABS" type="checkbox" value="true" /> ABS
+                                        <input name="ABS" type="hidden" value="false" />
+                                    </td>
+                                    <td>
+                                        <input name="CenterLock" type="checkbox" value="true" /> Center Lock
+                                        <input name="CenterLock" type="hidden" value="false" />
+                                    </td>
+                                    <td>
+                                        <input name="SunRoof" type="checkbox" value="true" /> SunRoof
+                                        <input name="SunRoof" type="hidden" value="false" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input name="Radio" type="checkbox" value="true" /> Sound System
+                                        <input name="Radio" type="hidden" value="false" />
+                                    </td>
+                                    <td>
+                                        <input name="Alarm" type="checkbox" value="true" /> Alarm
+                                        <input name="Alarm" type="hidden" value="false" />
+                                    </td>
+                                    <td>
+                                        <input name="AlElectricWindowarm" type="checkbox" value="true" /> Electric Window
+                                        <input name="ElectricWindow" type="hidden" value="false" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="col-md-3"></td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Car Describtion</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                @Html.TextAreaFor(a => a.Description, new { @class = "form-control", placeholder = " Car Describtion" })
+                            </div>
+                        </td>
+                        <td class="col-md-3"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Select Governorate</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                <div class="input select">
+                                    @Html.DropDownListFor(a => a.Gid, ViewBag.GoveList as SelectList, "Select Governorate", new { @class = "form-control" })
+                                    <i></i>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-md-3">
+                            @*Validation*@
+                            <label style="color:coral;"> @Html.ValidationMessageFor(a => a.Gid)</label>
+                        </td>
+                    </tr>
+
+                    <tr id="d1">
+                        @*partial View*@
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-2">
+                            <label>Upload Photos</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="main-row">
+                                <div class="form-control">
+                                    <span class="tooltip tooltip-right-top">Only one Photo Is Required, Others are Optional</span>
+                                    <input type="file" id="address" placeholder="Upload photo" name="imag1">
+                                </div><br />
+                                <div class="form-control">
+                                    <input type="file" id="address" placeholder="Upload photo" name="imag2">
+                                </div><br />
+                                <div class="form-control">
+                                    <input type="file" id="address" placeholder="Upload photo" name="imag3">
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-md-3"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div style="float:left ;width:100%">
+                                <button type="submit" class="primary-btn" style="background-color:#ffc600;width:100px;border-radius:5px;">Add</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+
+            </form>
+
+        </section>
+    </section>
+</div>
+
+@section last_js{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script>
+
+        $("#Gid").on("change", function () {
+            var z = $("#Gid").val();
+            $("#d1").load("/Advert/getcity/"+z);
+        })
+        $("#Mid").on("change", function () {
+            var z = $("#Mid").val();
+            $("#m1").load("/Advert/getmodel/" + z);
+        })
+
+</script>
+
+
+
+
+}

@@ -1,0 +1,360 @@
+﻿@using WebApplication1.Models
+@model CarAdv
+@{
+    ViewBag.Title = "CarIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    int i;
+}
+@section header_css{
+    <link href="~/Content/ToggleButtonsStyle.css" rel="stylesheet" />
+    <link href="~/Content/PannelsStyle.css" rel="stylesheet" />
+    <link href="~/Content/toggle_style.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+
+    <style>
+        .control_label {
+            color: white;
+        }
+
+        .size {
+            width: 70%;
+            height: 200px;
+            margin-left:50px;
+        }
+    </style>
+}
+@section header_js{
+<script src="~/Scripts/jquery.fancybox.js"></script>
+   
+}
+
+
+
+<section class="moduler wrapper_404" style="padding:100px 0px 20px 0px;background:url('../images/slider.jpg') no-repeat 50%;">
+    <div class="container">
+        <h2 style="font-family:Algerian;color:white;">Used Cars Search :</h2><br /><br />
+
+
+        @using (Ajax.BeginForm("Search", "CarSearch", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "searchResults",
+
+        }, new { @class = "form-horizontal" }))
+        {
+            <div class="form-group col-lg-6">
+                <div class="col-lg-4">
+                    @Html.Label("Brand", new { @class = "control_label" })
+                </div>                
+                    <div class="col-lg-6">
+                        @Html.DropDownListFor(a => a.Mid, ViewBag.Manufacs as SelectList, "Select Car Brand", new { @class = "form-control" })
+
+                    </div>
+                </div>
+                <div class="form-group col-lg-6">
+                    <div class="col-lg-4">
+                        @Html.Label("Governrate", new { @class = "control_label" })
+                    </div>
+                    <div class="col-lg-6">
+                        @Html.DropDownListFor(a => a.Gid, ViewBag.govs as SelectList, "Select Governrate", new { @class = "form-control" })
+
+                    </div>
+                </div>
+            
+
+
+                <div class="form-group col-lg-6" id="m1">
+
+                </div>
+          
+            <div class="form-group col-lg-6" id="d1">
+
+            </div>
+
+                <div class="form-group col-lg-6">
+                    <div class="col-lg-4">
+                        @Html.Label("Year", new { @class = "control_label" })
+                    </div>
+                    <div class="col-lg-3">
+                        <select class="form-control" name="yearfrom">
+                            <option>From</option>
+
+                            @for (i = 1990; i < 2018; i++)
+                            {
+                                <option>@i</option>
+                            }
+                        </select>
+
+                    </div>
+                    <div class="col-lg-3">
+                        <select class="form-control" name="yearto">
+                            <option>To</option>
+
+                            @for (i = 1990; i < 2018; i++)
+                            {
+                                <option>@i</option>
+                            }
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <div class="col-lg-4">
+                        @Html.Label("Price", new { @class = "control_label" })
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.TextBox("PriceFrom", null, new { @class ="form-control", placeholder = "From" })
+
+
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBox("PriceTo", null, new { @class ="form-control", placeholder ="To" })
+
+                    </div>
+                </div>
+
+
+                <div class="form-group col-lg-6">
+                    <div class="col-lg-4">
+                        @Html.Label("Cc", new { @class = "col-xs-3 control_label" })
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.TextBox("CcFrom", null, new { @class = "form-control", PlaceHolder = "From" })
+
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.TextBox("CcTo", null, new { @class = "form-control", PlaceHolder = "To" })
+
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-6">
+                    <div class="col-lg-4">
+                        @Html.Label("Km", new { @class = "col-xs-3 control_label" })
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.TextBox("KmFrom", null, new { @class = "form-control", placeholder = "From" })
+
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBox("KmTo", null, new { @class = "col-xs-3 form-control", placeholder = "To" })
+
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group col-lg-6">
+                    <div class="col-lg-4">
+                        @Html.Label("Transimition", new { @class = " control_label" })
+                    </div>
+                    <div class="col-lg-3" style="color:white;font-weight:bold;">
+                        <input type="radio" name="Transimition" value="Auto" /> Auto
+                    </div>
+                    <div class="col-lg-3" style="color:white;font-weight:bold;">
+                        <input type="radio" name="Transimition" value="Manual" style="color:white;" /> Manual
+                    </div>
+
+                </div>
+
+
+                @*Search with Details*@
+
+                <div class="form-group col-lg-12">
+
+                    <div class="col-lg-12">
+                        <button class="btn col-lg-10" type="button" data-toggle="collapse" style="background-color:#ffc500;font-weight:bold;" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Search with Details
+                        </button>
+                    </div>
+                    <div class="collapse col-lg-12" id="collapseExample">
+                        <div class="card card-block">
+                            <div class="container">
+
+                                <div class="panel panel-default ">
+                                    <!-- Default panel contents -->
+                                    <!-- List group -->
+                                    <ul class="list-group list-inline col-lg-12">
+
+
+
+                                        <li class="list-group-item col-lg-3">
+
+                                            <input type="checkbox" name="AirBag" value="true" />
+                                            <label>Air Bag</label>
+
+                                        </li>
+                                        <li class="list-group-item col-lg-3 ">
+
+                                            <input type="checkbox" name="SunRoof" value="true" />
+                                            <label>SunRoof</label>
+
+                                        </li>
+
+
+                                        <li class="list-group-item col-lg-3 ">
+
+                                            <input type="checkbox" name="Alarm" value="true" />
+                                            <label>Alarm</label>
+
+                                        </li>
+
+
+                                    </ul>
+                                    <ul class="list-group list-inline col-lg-12">
+
+
+                                        <li class="list-group-item col-lg-3">
+
+                                            <input type="checkbox" name="Airdevice" value="true" />
+                                            <label>Air Condition</label>
+
+                                        </li>
+                                        <li class="list-group-item col-lg-3">
+
+                                            <input type="checkbox" name="CenterLock" value="true" />
+                                            <label>Center Lock</label>
+
+                                        </li>
+
+                                        <li class="list-group-item col-lg-3">
+
+                                            <input type="checkbox" name="Radio" value="true" />
+                                            <label>Radio</label>
+
+                                        </li>
+                                    </ul>
+
+
+                                    <ul class="list-group list-inline col-lg-12">
+
+
+                                        <li class="list-group-item col-lg-3">
+
+                                            <input type="checkbox" name="ElectricWindow" value="true" />
+                                            <label>Electric Window</label>
+
+                                        </li>
+                                        <li class="list-group-item col-lg-3">
+
+                                            <input type="checkbox" name="ABS" value="true" />
+                                            <label>ABS</label>
+
+                                        </li>
+                                        <li class="list-group-item col-lg-3">
+
+                                            <input type="checkbox" name="Power" value="true" />
+                                            <label>Power</label>
+
+                                        </li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <div class="col-lg-11" style="text-align:center;">
+                        <br /> <input value="Search" type="submit" class="btn" style="background-color:#ffc600;width:100px;border-radius:5px; width:200px;font-weight:bold;" />
+
+                    </div>
+
+                </div>
+                }
+
+            </div>
+
+
+</section>
+
+
+@*Search results*@
+
+
+
+<section class="moduler wrapper_404" style="padding:30px 0px 0px 0px;background-color:#e4e5e9;">
+    <div class="container" id="searchResults">
+        <h2 style="font-family:Algerian;color:black;">Top Recent cars :</h2><br /><br />
+        @foreach (var item in ViewBag.TopCars)
+        {
+            <div class="col-sm-4 col-xs-12" >
+                <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+                    <div class="img-wrapper" >
+                        @*<img src="@item.CarPhoto.FirstOrDefault().CPhoto" class="img-responsive Recent-Car-resize" width="300" height="300" alt="this is a title">*@
+
+                        <img src="~/images/car_logos_2/(@item.Mid).png" class="img-responsive Recent-Car-resize size" alt="this is a title">
+
+                        <div class="overlay">
+                            <div class="buttons">
+                                <a rel="gallery" class="fancybox" href="~/images/car_logos_2/(@item.Mid).png">Zoom</a>
+
+                                @Html.ActionLink("Details", "carDetails", "CarSearch", new { id = @item.Aid }, new { @class = "btn btn-primary" })
+                            </div>
+                        </div>
+                    </div>
+                    <figcaption>
+                        <h4>
+                            <a href="~/CarSearch/carDetails/@item.Aid">
+                                @item.Manufacturer.Name | @item.CarModel.ModelName
+                            </a>
+                        </h4>
+                        <p>
+                            @item.Price EGP
+                        </p>
+                    </figcaption>
+                </figure>
+            </div>
+
+
+        }
+
+
+    </div>
+
+</section>
+<br /><div style="text-align:center;">
+    <a href="~/CarSearch/CarIndex" class="btn" style="background-color:#333333;color:#ffc500;width:200px;">Back</a> <br /><br />
+
+</div>
+
+@section last_js{
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-34160351-1']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+    </script>
+<script>
+
+    $("#Gid").on("change", function () {
+        var x = $("#Gid").val();
+        $("#d1").load("/CarSearch/getcity/" + x);
+    })
+    $("#Mid").on("change", function () {
+        var z = $("#Mid").val();
+        $("#m1").load("/CarSearch/getmodel/" + z);
+    })
+   
+</script>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+}

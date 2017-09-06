@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebApplication1.Models.AccessoriesAdv>
+@{
+    ViewBag.Title = "Pending_AccessoryAds";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h2>Pending Accessory Ads</h2>
+
+<div class="container">
+    <div class="col-md-10">
+        <div class="mainbody" style="overflow-x:auto">
+            <table class="table table-condensed table-bordered table-hover">
+                <tr>
+                    <th>
+                        UserName
+                    </th>
+                    <th>
+                        Manufacturer
+                    </th>
+                    <th>
+                        Accessory Brand Name
+                    </th>
+                    <th>
+                        Accessory Photo
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Adv Date
+                    </th>
+                    <th>Operation</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem=>item.ApplicationUser.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Manufacturer.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Accessory.AccTypeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Aphoto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AdDate)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Publish", "Publish", new { id = item.AccId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.AccId })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+

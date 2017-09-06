@@ -1,0 +1,217 @@
+﻿@model WebApplication1.Models.Contactus
+@{
+    ViewBag.Title = "Contact Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header_css{
+    <link href="~/Content/contactabout.css" rel="stylesheet" />
+}
+
+@section last_js{
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+<link href="~/Content/ionicons.min.css" rel="stylesheet" />
+<!--
+==================================================
+    Global Page Section Start
+================================================== -->
+
+<section class="global-page-header" style="background-color:#ffc600;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Contact With Us</h2>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--/#page-header-->
+<!--
+==================================================
+    Contact Section Start
+================================================== -->
+<section >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="block">
+                    <div class="col-md-12 title text-center">
+                        <div class="border-bootom"></div>
+                    </div>
+
+                    <div class="contact-form" style="text-align:center">
+                        @using (Html.BeginForm("Action", "Home", FormMethod.Post, new { @class = "contact-forms", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary()
+
+                                        <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
+                                @Html.TextBoxFor(a => a.Name, new { @class = "form-control", placeholder = "Name", id = "name" })
+                            </div>
+
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s">                               
+                                @Html.TextBoxFor(a => a.Email, new { @class = "form-control", placeholder = "Email", id = "email" })
+                                <label style="color:coral;">  @Html.ValidationMessageFor(a => a.Email)</label>
+                            </div>
+
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1s">
+                                @Html.TextBoxFor(a => a.Subject, new { @class = "form-control", placeholder = "Subject", id = "subject" })
+                                <label style="color:coral;">  @Html.ValidationMessageFor(a => a.Subject)</label>
+                            </div>
+
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.2s">
+                                @Html.TextAreaFor(a => a.Message, new { @class = "form-control", placeholder = "Message", id = "message", rows = "6" })
+                                <label style="color:coral;">  @Html.ValidationMessageFor(a => a.Message)</label>
+                            </div>
+
+                            <div id="submit" class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.4s">
+                                <input type="submit" id="contact-submit" class="btn btn-default btn-send" value="Send Message" style="background-color:#ffc600;"><br /><br />
+                            </div>
+                        }
+                        @*</form>*@
+                    </div>
+                </div>
+                <div class="row address-details" id="contact-section">
+                    <div class="col-md-4 ">
+                        <div class="twitter wow fadeInLeft social-networks" data-wow-duration="500ms" data-wow-delay=".3s">
+                            <a href="#" @*class="twitter"*@><i class="fa fa-twitter"></i></a>
+                            <p>Twitter</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="facebook wow fadeInLeft social-networks" data-wow-duration="500ms" data-wow-delay=".5s">
+                            <a href="#" @*class="facebook"*@><i class="fa fa-facebook"></i></a>
+                            <p>Facebook</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="googleplus wow fadeInLeft social-networks" data-wow-duration="500ms" data-wow-delay=".7s">
+                            <a href="#" @*class="google"*@><i class="fa fa-google-plus"></i></a>
+                            <p>Google Plus</p>
+                        </div>
+                    </div>
+                    @*<div class="col-md-3">
+                            <div class="phone wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".9s">
+                                <i class="ion-ios-telephone-outline"></i>
+                                <p>+07 052 245 022<br>+07 999 999 999</p>
+                            </div>
+                        </div>*@
+                </div>
+
+                <hr />
+                <br />
+                <br />
+
+                @*<div class="col-md-1"></div>*@
+                @*<div class="col-md-10">*@
+                @*<div class="map-area">*@
+                <div class="title text-center">
+                    <h1 class="wow " data-wow-duration="2s" data-wow-offset="100" style="visibility: visible ;">About Us</h1>
+                    <div class="border-bootom"></div>
+                </div>
+                @*<h2 class="subtitle  wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s" style="text-align:center">About Us</h2>*@
+                <p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s" style="text-align:center">
+                    Si aute quis eu proident o cupidatat ne anim nescius, <br />
+                    et est praesentibus, o quorum vidisse expetendis, <br />
+                    nostrud eram quibusdam ad nam nostrud ubi.
+
+                </p>
+                <hr />
+                <br />
+                <br />
+
+                @*</div>*@
+
+                <div class="our-team">
+                    @*<div class="container">*@
+                    <div class="row">
+                        @*<div class="col-md-1"></div>*@
+                        <div class="title text-center">
+                            <h1 class="wow " data-wow-duration="2s" data-wow-offset="100" style="visibility: visible ;">Our Team</h1>
+                            @*<div class="border-bootom"></div>*@
+                        </div>
+                        <div class="person-det col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="4" data-wow-offset="100">
+                            <div class="persop-img">
+                                <img alt="" class="img-responsive" src="~/images/avater-1.jpg">
+                            </div>
+                            <div class="persone-cover">
+                                <h4>Name</h4>
+                                <p>Position in Company</p>
+                                @*<a href="#" class="google"><i class="fa fa-google-plus"></i></a>*@
+                            </div>
+                        </div>
+
+                        <div class="person-det col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="4" data-wow-offset="100">
+                            <div class=" persop-img">
+                                <img alt="" class="img-responsive" src="~/images/avater-2.jpg">
+                            </div>
+                            <div class="persone-cover">
+                                <h4>Name</h4>
+                                <p>Position in Company</p>
+                            </div>
+                        </div>
+                        <div class="person-det col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="4" data-wow-offset="100">
+                            <div class=" persop-img">
+                                <img alt="" class="img-responsive" src="~/images/avater-1.jpg">
+                            </div>
+                            <div class="persone-cover">
+                                <h4>Name</h4>
+                                <p>Position in Company</p>
+                            </div>
+                        </div>
+                        <div class="person-det col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="4" data-wow-offset="100">
+                            <div class=" persop-img">
+                                <img alt="" class="img-responsive" src="~/images/avater-2.jpg">
+                            </div>
+                            <div class="persone-cover">
+                                <h4>Name</h4>
+                                <p>Position in Company</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+
+
+
+<!--
+==================================================
+    Call To Action Section Start
+================================================== -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
+                        INTERESTED IN WORKING TOGETHER? ?
+                    </h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis,</br>possimus commodi, fugiat magnam temporibus vero magni recusandae? Dolore, maxime praesentium.</p>
+                    <a href="contact.html" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact With Me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+

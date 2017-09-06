@@ -1,0 +1,228 @@
+﻿@using WebApplication1.Models
+@model AccessoriesAdv
+@{
+    ViewBag.Title = "AccessoriesIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section header_css{
+    <style>
+        .control_label {
+            color: white;
+        }
+
+        .size {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+}
+@section header_js{
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}
+
+<section class="moduler wrapper_404" style="padding:100px 0px 20px 0px;background:url('../images/slider.jpg') no-repeat 50%;">
+    <div class="container">
+        <h2 style="font-family:Algerian;color:white;">Accessories Search :</h2><br />
+
+        @using (Ajax.BeginForm("accSearch", "AccessoriesSearch", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "accsearchresults"
+        }, new { @class = "form-horizontal" }))
+        {
+            <div class="form-group col-lg-6">
+                <div class="col-lg-4">
+                    @Html.Label("Accessory Type", new { @class = "control_label" })
+                </div>
+                <div class="col-lg-6">
+                    @Html.DropDownListFor(a => a.AccTypeId, ViewBag.access as SelectList, "Select Accessory Type", new { @class = "form-control" })
+
+                </div>
+            </div>
+
+
+            <div class="form-group col-lg-6">
+                <div class="col-lg-4">
+                    @Html.Label("Brand", new { @class = "control_label" })
+                </div>
+                <div class="col-lg-6">
+                    @Html.DropDownListFor(a => a.Mid, ViewBag.Manufacs as SelectList, "Select Accessory Brand", new { @class = "form-control" })
+
+                </div>
+            </div>
+
+            <div class="form-group col-lg-6">
+                <div class="col-lg-4">
+                    @Html.Label("Governorate", new { @class = "control_label" })
+                </div>
+
+                <div class="col-lg-6">
+                    @Html.DropDownListFor(a => a.Gid, ViewBag.govs as SelectList, "Select Governorate", new { @class = "form-control" })
+
+                </div>
+            </div>
+
+            <div class="form-group col-lg-6" id="d1">
+               
+            </div>
+
+
+            <div class="form-group col-lg-6">
+                <div class="col-lg-4">
+                    @Html.LabelFor(a => a.Price, new { @class = "control_label" })
+                </div>
+
+                <div class="col-lg-3">
+                    @Html.TextBox("PriceFrom", null, new { @class = "form-control", placeholder = "From" })
+
+                </div>
+                <div class="col-lg-3">
+
+                    @Html.TextBox("PriceTo", null, new { @class = "form-control", placeholder = "To" })
+
+                </div>
+            </div>
+
+
+            <div class="form-group col-lg-6">
+                <div class="col-lg-4">
+                    @Html.Label("Status", new { @class = "control_label" })
+                </div>
+
+                <div class="col-lg-3" style="color:white;font-weight:bold;">
+                    <input type="radio" name="Condition" value="New" /> New
+                </div>
+                <div class="col-lg-3" style="color:white;font-weight:bold;">
+                    <input type="radio" name="Condition" value="Used" /> Used
+                </div>
+
+            </div>
+                <div class="form-group ">
+                    <div class="col-lg-11" style="text-align:center;">
+                        <br /> <input value="Search" type="submit" class="btn" style="background-color:#ffc600;width:100px;border-radius:5px; width:200px;font-weight:bold;" />
+
+                    </div>
+
+                </div>
+
+        }
+    </div>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+@*Search results*@
+
+
+
+<section class="moduler wrapper_404" style="padding:30px 0px 0px 0px;background-color:#e4e5e9;">
+    <div class="container" id="accsearchresults">
+        <h2 style="font-family:Algerian;color:black;">Top Recent Accessories :</h2>
+        @foreach (var item in ViewBag.TopAccess)
+        {
+
+            <div class="col-sm-4 col-xs-12">
+                <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+                    <div class="img-wrapper">
+                        @*<img src="@item.CarPhoto.FirstOrDefault().CPhoto" class="img-responsive Recent-Car-resize" width="300" height="300" alt="this is a title">*@
+
+                        <img src="@item.Aphoto" class="img-responsive Recent-Car-resize size" alt="this is a title">
+                        <div class="overlay">
+                            <div class="buttons">
+                                <a rel="gallery" class="fancybox" href="@item.Aphoto">Zoom</a>
+
+                                @Ajax.ActionLink("Details", "accDetails", "AccessoriesSearch", new { id = @item.AccId }, new AjaxOptions()
+                           {
+                               UpdateTargetId = "accPopup",
+                               InsertionMode = InsertionMode.Replace,
+                               OnSuccess = "myfun()"
+
+
+                           }, new { @class = "btn btn-primary" })  <br />  <br />
+                            </div>
+                        </div>
+                    </div>
+                    <figcaption>
+                        <h4>
+                            <a>
+                                @item.Manufacturer.Name | @item.Accessory.AccTypeName
+                            </a>
+                        </h4>
+                        <p>
+                            @item.Price EGP
+                        </p>
+                    </figcaption>
+                </figure>
+            </div>
+
+
+        }
+    </div>
+</section>
+
+
+<!--------------------------------------------------Popup-------------------->
+
+<div class="modal fade" role="dialog" id="accModal">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+            <div class="modal-header" style="background-image:url('../images/bgf.png');">
+                <div style="background-color:#ffc500;text-align:center;">
+
+                    <h2 class="modal-title" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Advertisment Details</h2>
+
+                </div>
+            </div>
+
+
+            <div class="modal-body" id="accPopup" style="background-image:url('../images/bgf.png');">
+
+            </div>
+
+            <div class="modal-footer" style="background-image:url('../images/bgf.png');">
+                <button type="button" class="btn" style="background-color:#ffc500;width:150px;font-weight:bold;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><div style="text-align:center;">
+    <a href="~/AccessoriesSearch/AccessoriesIndex" class="btn" style="background-color:#333333;color:#ffc500;width:200px;">Back</a> <br /><br />
+
+</div>
+
+
+
+@section last_js{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script>
+        function myfun() {
+            $("#accModal").modal({ show: true });
+        }
+
+
+    </script>
+    <script>
+        $("#Gid").on("change", function () {
+            var z = $("#Gid").val();
+            $("#d1").load("/AccessoriesSearch/getcity/" + z);
+        })
+
+    </script>
+}

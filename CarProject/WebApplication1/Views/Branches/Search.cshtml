@@ -1,0 +1,47 @@
+﻿@model  IQueryable<WebApplication1.Models.Branch>
+
+<section class="moduler wrapper_404" style="padding:10px 0px 0px 0px;background-color:#e4e5e9;">
+
+    <h2>@Model.Count() Search Results found</h2>
+
+
+
+    @foreach (var item in Model)
+    {
+
+        <div class="col-sm-4 col-xs-12">
+            <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+                <div class="img-wrapper" style="text-align:center;margin-left: 96px;">
+                    <img src="@item.Manufacturer.LogoImage" class="img-responsive Recent-Car-resize" alt="this is a title" style="width:150px">
+                </div>
+
+                <figcaption style="height: 232px;">
+                    <h4 class="text-center" style="color: #ffc500">@item.Name</h4>
+                    <p class="text-center">
+                       
+                            <table>
+                                <tr>                               
+                                    <td style="vertical-align:top">  <strong style="color: #ffc500">Address:</strong> </td> 
+                                    <td style="vertical-align:top"> @item.Address </td>
+                               </tr>
+
+                                <tr>
+                                    <td style="vertical-align:top">  <strong style="color: #ffc500">Contacts:</strong> </td>
+                                    <td style="vertical-align:top">  Phone:   @item.Phone <br /> Mobile:  @item.Mobile</td>
+                                </tr>
+
+                                <tr>
+                                    <td style="vertical-align:top">  <strong style="color: #ffc500">Working Hours:</strong> </td>
+                                    <td style="vertical-align:top">  @item.WorkingHours</td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align:top">  <strong style="color: #ffc500">Vacation: </strong> </td>
+                                    <td style="vertical-align:top"> @item.WorkingHours </td>
+                                </tr>
+                              </table>
+                    </p>
+                </figcaption>
+            </figure>
+        </div>
+    }
+</section>
