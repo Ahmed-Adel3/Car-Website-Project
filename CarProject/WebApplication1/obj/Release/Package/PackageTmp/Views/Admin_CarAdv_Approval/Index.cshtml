@@ -1,0 +1,110 @@
+﻿@model IEnumerable<WebApplication1.Models.CarAdv>
+@{
+    ViewBag.Title = "Pending Car Advert";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h2>Pending Car Adverts: </h2>
+
+<div class="container">
+    <div class="col-md-10">
+        <div class="mainbody" style="overflow-x:auto">
+            <table class="table table-condensed table-bordered table-hover">
+                <tr>
+                    <th>
+                        UserName
+                    </th>
+                    <th>
+                        Manufacturer
+                    </th>
+                    <th>
+                        Color
+                    </th>
+                    <th>
+                        Year
+                    </th>
+                    <th>
+                        Cc
+                    </th>
+                    <th>
+                        Km Driven
+                    </th>
+                    <th>
+                        CarPhotos
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Date of Adding
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Power
+                    </th>
+                    <th>
+                        Approval
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Manufacturer.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Color)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Year)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Km)
+                        </td>
+                        <td>
+                            @foreach (var item1 in Model)
+                            {
+                                foreach (var photo in item.CarPhoto)
+                                {
+                                    <img src="@photo.CPhoto" style="height:100px" />
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AdDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Power)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Publish", "Publish", new { id = item.Aid }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Aid })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+

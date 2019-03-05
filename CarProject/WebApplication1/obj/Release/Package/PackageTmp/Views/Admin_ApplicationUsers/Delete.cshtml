@@ -1,0 +1,69 @@
+﻿@model WebApplication1.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div class="container">
+    <hr />
+    <div class="col-md-4">
+        <table class="table table-bordered table-condensed table-hover">
+            <tr>
+            <td>    @Html.DisplayNameFor(model => model.City.CityName)</td>
+            <td>    @Html.DisplayFor(model => model.City.CityName)         </td>
+             </tr>
+            <tr>
+                <td>    @Html.DisplayNameFor(model => model.Governrate.Gname)  </td>
+                <td>    @Html.DisplayFor(model => model.Governrate.Gname)      </td>
+            </tr>
+            <tr>
+                <td>    @Html.DisplayNameFor(model => model.FirstName)         </td>
+                <td>    @Html.DisplayFor(model => model.FirstName)             </td>
+            </tr>
+            <tr>
+                <td>    @Html.DisplayNameFor(model => model.LastName)          </td>
+                <td>    @Html.DisplayFor(model => model.LastName)              </td>
+            </tr>
+            <tr>
+                <td>    @Html.DisplayNameFor(model => model.Mobile1)           </td>
+                <td>    @Html.DisplayFor(model => model.Mobile1)               </td>
+            </tr>
+            <tr>
+                <td>    @Html.DisplayNameFor(model => model.UPhoto)            </td>
+                <td>    @Html.DisplayFor(model => model.UPhoto)                </td>
+            </tr>
+            <tr>
+                <td>    @Html.DisplayNameFor(model => model.Email)             </td>
+                <td>    @Html.DisplayFor(model => model.Email)                 </td>
+            </tr>
+            <tr>
+                <td>    @Html.DisplayNameFor(model => model.PasswordHash)      </td>
+                <td>    @Html.DisplayFor(model => model.PasswordHash)          </td>
+            </tr>
+            <tr>
+                <td>    @Html.DisplayNameFor(model => model.PhoneNumber)       </td>
+                <td>    @Html.DisplayFor(model => model.PhoneNumber)           </td>
+            </tr>
+            <tr>
+                <td>    @Html.DisplayNameFor(model => model.UserName)          </td>
+                <td>    @Html.DisplayFor(model => model.UserName)              </td>
+            </tr>
+  
+       </table>  
+            
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn formbutton" /> <br/>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+    </div>
+    </div>

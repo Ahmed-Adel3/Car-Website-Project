@@ -1,0 +1,165 @@
+﻿@using WebApplication1.Models
+@model ApplicationUser
+@{
+    ViewBag.Title = "Setting";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header_css {
+    <link href="~/Content/Profile.css" rel="stylesheet" />
+    <link href="~/Content/j-forms.css" rel="stylesheet" />
+    <link href="~/Content/Registeration_Style.css" rel="stylesheet" />
+    <link href="~/Content/Forms_style.css" rel="stylesheet" />
+}
+
+<h2>setting</h2>
+
+@using (Html.BeginForm("setting", "Profile", new
+{ Id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+
+
+    <section class="registration-content">
+        <div class="container" style="margin-top: 60px">
+
+
+            <div class="col-sm-4">
+
+                    <div class="panel panel-default" style="background-image:url('/images/bgf.png')">
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <h3 style="text-align:center;color: #ffc600;">@Model.FirstName @Model.LastName</h3>
+
+                                        <img src="@Model.UPhoto" class="img-responsive"   style="border: #ffc600 3px solid;"  />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <ul class="nav nav-pills nav-stacked" style="font-weight:bolder; color:#ffc600">
+
+                                <li class="active">
+                                    <a href="#tab_default_1" data-toggle="tab" style="font-weight:bolder; color:#ffc600">Personal Info </a>
+                                </li>
+                                <li>
+                                    <a href="#tab_default_2" data-toggle="tab" style="font-weight:bolder; color:#ffc600">Setting</a>
+                                </li>
+                                <li>
+                                    <a href="#tab_default_3" data-toggle="tab" style="font-weight:bolder; color:#ffc600">My Car_Advertisements</a>
+                                </li>
+                                <li>
+                                    <a href="#tab_default_4" data-toggle="tab" style="font-weight:bolder; color:#ffc600">My Accessory_Advertisements</a>
+                                </li>
+                                <li>
+                                    <a href="#tab_default_5" data-toggle="tab" style="font-weight:bolder; color:#ffc600">Technician_Advertisements</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()" style="font-weight:bolder; color:#ffc600">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            <div class="col-sm-8">
+               
+                    <div data-spy="scroll" class="tabbable-panel">
+
+                        <div class="tab-content">
+
+                            <div class="tab-pane active" id="tab_default_1">
+
+                                    <table class="table table-bordered table-hover" background="~/images/bgf.png" style="color: white;font-weight:bold">
+
+                                        <tr>
+                                            <td style="color: #ffc600;">First Name</td>
+                                            <td>@Model.FirstName</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #ffc600;">Last Name</td>
+                                            <td>@Model.LastName</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #ffc600;">Email</td>
+                                            <td>@Model.Email</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #ffc600;">Mobile</td>
+                                            <td>@Model.PhoneNumber</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #ffc600;">Phone</td>
+                                            <td>@Model.Mobile1</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #ffc600;">Governement</td>
+                                            <td>@Model.Governrate.Gname</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #ffc600;">City</td>
+                                            <td>@Model.City.CityName</td>
+                                        </tr>
+
+
+                                    </table>
+                                </div>
+
+                            <div class="tab-pane" id="tab_default_2">
+                               <table background="~/images/bgf.png" class="table table-bordered table-hover table-responsive" style="color: white;font-weight:bold">
+
+                                @Html.Partial("_PartialSetting",new RegisterViewModel())
+                                    
+                                </table>
+                            </div>
+
+                            <div class="tab-pane" id="tab_default_3">
+
+                               @Html.Partial("_Partial_My_Advs", new CarAdv() )
+
+                            </div>
+
+                            <div class="tab-pane" id="tab_default_4">
+                                @Html.Partial("_Partial_Acc_Advs", new AccessoriesAdv())
+                               
+                            </div>
+
+                            <div class="tab-pane" id="tab_default_5">
+                                @Html.Partial("_Partial_CarJob", new JobAdv())
+                               
+                            </div>
+
+                            <div class="tab-pane" id="tab_default_6">
+
+                               
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+}
+@section last_js{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/Profile.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script>
+
+        $("#Gid").on("change", function () {
+            var z = $("#Gid").val();
+            $("#d1").load("/Profile/getcity/"+z);
+        })
+</script>
+
+}

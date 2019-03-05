@@ -1,0 +1,193 @@
+﻿
+@using WebApplication1.Models
+
+@section header_css{
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    }
+
+@if(ViewBag.caradv != null)
+{
+    foreach (var item in ViewBag.caradv)
+    {
+    <div class="col-sm-6 col-xs-12">
+        <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+            <div class="img-wrapper">
+                <img src="@item.Manufacturer.LogoImage" class="img-responsive Recent-Car-resize" alt="this is a title">
+
+                 <div class="overlay">
+                    <div class="buttons">
+                       @if (item.state == status.sold)
+                       {
+                        <a href="@Url.Action("RepublishCar", "Profile", routeValues: new { id = item.Aid })">
+                            Republish
+                        </a>
+                       }
+                       else
+                       { 
+                        <a href="@Url.Action("SoldCar", "Profile", routeValues: new { id = item.Aid })">
+                            Mark As Sold
+                        </a>
+                        <a href="@Url.Action("carDetails", "CarSearch", routeValues: new { id = item.Aid })">
+                            Details
+                        </a>
+                       }
+
+
+                    </div>
+                </div>
+            </div>
+            <figcaption>
+                <h4>
+                    <a href="#">
+                        @item.Manufacturer.Name : @item.CarModel.ModelName
+                    </a>
+                </h4>
+                <p>
+                    <strong>Price</strong>  @item.Price EGP
+                </p>
+            </figcaption>
+        </figure>
+    </div>
+
+    }
+}
+
+
+
+
+@*@foreach (var item in ViewBag.caradv)
+{
+    <div class="col-lg-8 col">
+
+        @*<img src="@item.CarPhoto.First().Cphoto" alt="BMW" class="thumbnail brand" />*@
+        @*<h3 class="text-center">@item.Manufacturer.Name : @item.CarModel.ModelName</h3>
+
+
+        
+        <table class="table table-bordered table-hover table-condensed">
+            <tr>
+                <td>
+                    <strong>Color:</strong>
+                    @item.Color
+
+                </td>
+                <td>
+                    <strong>Year:</strong>
+                    @item.Year
+                </td>
+                <td>
+                    <strong>Price: </strong>
+                    @item.Price
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    <strong>Power: </strong>
+                    @item.Power
+                </td>
+                <td>
+                    <strong>Cc:</strong>
+                    @item.Cc
+                </td>
+                <td>
+                    <strong>KM: </strong>
+                    @item.Km
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <strong>AirDevice: </strong>
+                    @item.AirDevice
+                </td>
+                <td>
+                    <strong>SunRoof: </strong>
+                    @item.SunRoof
+                </td>
+                <td>
+                    <strong>Transimition: </strong>
+                    @item.Transimition
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Government: </strong>
+                    @item.Governrate.Gname
+                </td>
+                <td>
+                    <strong>Adv_Date: </strong>
+                    @item.AdDate
+                </td>
+                <td>
+                    <strong>AirBag: </strong>
+                    @item.AirBag
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    <strong>City: </strong>
+                    @item.City.CityName
+                </td>
+                <td>
+                    <strong>CenterLock: </strong>
+                    @item.CenterLock
+                </td>
+                <td>
+                    <strong>Alert: </strong>
+                    @item.Alarm
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <strong>Radio: </strong>
+                    @item.Radio
+                </td>
+                <td>
+                    <strong>ABS: </strong>
+                    @item.ABS
+                </td>
+                <td>
+                    <strong>Electric Window: </strong>
+                    @item.ElectricWindow
+                </td>
+            </tr>
+            <tr>
+
+                <td colspan="3">
+                    <strong>Description: </strong>
+                    @item.Description
+                </td>
+            </tr>
+
+
+
+        </table>
+
+    </div>
+}*@
+
+<!-- LikeBtn.com BEGIN -->
+@*<span class="likebtn-wrapper"
+      data-white_label="true"
+      data-identifier="item_6"
+      data-show_like_label="false"
+      data-dislike_enabled="false" data-icon_dislike_show="false">
+
+</span>
+<script>
+    (function (d, e, s)
+    {
+        if (d.getElementById("likebtn_wjs")) return;
+        a = d.createElement(e);
+        m = d.getElementsByTagName(e)[0];
+        a.async = 1; a.id = "likebtn_wjs";
+        a.src = s;
+        m.parentNode.insertBefore(a, m)
+    })*@
+@*(document, "script", "//w.likebtn.com/js/w/widget.js");</script>*@
+<!-- LikeBtn.com END -->

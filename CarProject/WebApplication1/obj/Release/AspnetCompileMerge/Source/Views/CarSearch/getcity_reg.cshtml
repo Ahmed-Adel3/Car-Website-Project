@@ -1,0 +1,10 @@
+﻿@using WebApplication1.Models
+@model RegisterViewModel
+
+
+<div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+    @Html.DropDownListFor(a => a.CityId, ViewBag.sel as SelectList, "Select Your City", new { @class = " form-control" })
+
+</div>
+<div>@Html.ValidationMessageFor(a => a.CityId)</div>

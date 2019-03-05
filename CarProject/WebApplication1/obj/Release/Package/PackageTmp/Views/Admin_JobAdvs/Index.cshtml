@@ -1,0 +1,83 @@
+﻿@model IEnumerable<WebApplication1.Models.JobAdv>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="container">
+    <div class="col-md-10">
+        <div class="mainbody" style="overflow-x:auto">
+            <table class="table table-condensed table-bordered table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.City.CityName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Governrate.Gname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TechJob.Jname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkShopName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkShopPhone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AdDate)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.City.CityName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Governrate.Gname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TechJob.Jname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkShopName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkShopPhone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AdDate)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.JAid }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.JAid }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.JAid })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,134 @@
+﻿@using WebApplication1.Models
+@model Branch
+@{
+    ViewBag.Title = "Branches";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header_css{
+
+    @*<link href="~/Content/AdminLTE.css" rel="stylesheet" />*@
+    <link href="~/Content/Branches.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+}
+
+@section  last_js{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <script src="~/Scripts/script-bootstrap-select.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+}
+@*<div class="container" style="margin-top:90px">
+    <br />
+    <br />
+
+
+    <div class="row">*@
+
+
+
+
+<section class="moduler wrapper_404" style="padding:100px 0px 20px 0px;background:url('../images/slider.jpg') no-repeat 50%;">
+    <div class="container">
+        <h2 style="font-family:Algerian;color:white;">Branches Search :</h2><br />
+
+
+        @using (Ajax.BeginForm("Search", "Branches", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "searchdiv"
+
+        }, new { @class = "form-horizontal" }))
+        {
+
+            <div class="form-group">
+                @Html.Label("Manufactuer", new { @class = "col-xs-3 control_label", style = "color:white" })
+                <div class="col-xs-6">
+                    @Html.DropDownListFor(a => a.Mid, ViewBag.sel as SelectList, "Select Manufactuer", new { @class = "col-xs-3 form-control" })
+
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                @Html.Label("Governorate", new { @class = "col-xs-3 control_label", style = "color:white" })
+                <div class="col-xs-6">
+                    @Html.DropDownListFor(a => a.Gid, ViewBag.sel1 as SelectList, "Select Governrate", new { @class = "col-xs-3 form-control" })
+
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-lg-11">
+                    <br /><span class="glyphicon glyphicon-search"></span>
+                    <input type="submit" value="Search" class="btn col-lg-10" style="background-color:#ffc500;" />
+
+                </div>
+
+            </div>
+
+
+        }
+
+
+    </div>
+
+
+</section>
+
+@* -------------------------------------------------Branches top 5-------------------------------------------------------------------------- *@
+
+<section class="moduler wrapper_404" style="padding:10px 0px 0px 0px;background-color:#e4e5e9;">
+
+
+        <div class="container" id="searchdiv">
+            @*@if (ViewBag.br.Count() != 0 )
+            {*@
+                @foreach (var item in ViewBag.br)
+                {
+
+                    <div class="col-sm-4 col-xs-12">
+
+                        <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+                            <div class="img-wrapper" style="text-align:center;margin-left: 96px;">
+                                <img src="@item.Manufacturer.LogoImage" class="img-responsive Recent-Car-resize" alt="this is a title" style="width:150px">
+                            </div>
+
+                            <figcaption style="height: 232px;">
+                                <h4 class="text-center" style="color: #ffc500">@item.Name</h4>
+                                <p class="text-center">
+
+                                    <table>
+                                        <tr>
+                                            <td style="vertical-align:top">  <strong style="color: #ffc500">Address:</strong> </td>
+                                            <td style="vertical-align:top"> @item.Address </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="vertical-align:top">  <strong style="color: #ffc500">Contacts:</strong> </td>
+                                            <td style="vertical-align:top">  Phone:   @item.Phone <br /> Mobile:  @item.Mobile</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="vertical-align:top">  <strong style="color: #ffc500">Working Hours:</strong> </td>
+                                            <td style="vertical-align:top">  @item.WorkingHours</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align:top">  <strong style="color: #ffc500">Vacation: </strong> </td>
+                                            <td style="vertical-align:top"> @item.WorkingHours </td>
+                                        </tr>
+                                    </table>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                }
+
+                }
+            @*}*@
+        </div>
+
+</section>

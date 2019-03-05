@@ -1,0 +1,167 @@
+﻿@using WebApplication1.Models
+@model JobAdv
+@{
+    ViewBag.Title = "TechAdvIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section header_js{
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}
+@section header_css{
+
+    <style>
+        .control_label {
+            color: white;
+        }
+
+        .size {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+}
+
+<section class="moduler wrapper_404" style="padding:100px 0px 20px 0px;background:url('../images/slider.jpg') no-repeat 50%;">
+    <div class="container">
+        <h2 style="font-family:Algerian;color:white;">Jobs Search :</h2><br />
+        @using (Ajax.BeginForm("jobSearch", "TechJobsSearch", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "accsearchresults"
+        }, new { @class = "form-horizontal" }))
+        {
+
+            <div class="form-group">
+                @Html.Label("Jobs", new { @class = "col-xs-3 control_label" })
+                <div class="col-xs-6">
+                    @Html.DropDownListFor(a => a.Jid, ViewBag.jobs as SelectList, "Select Job", new { @class = "col-xs-3 form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Governorate", new { @class = "col-xs-3 control_label" })
+                <div class="col-xs-6">
+                    @Html.DropDownListFor(a => a.Gid, ViewBag.govs as SelectList, "Select Governrate", new { @class = "col-xs-3 form-control" })
+
+                </div>
+            </div>
+
+            <div class="form-group" id="d1">
+                
+            </div>
+            <div class="form-group ">
+                <div class="col-lg-11" style="text-align:center;">
+                    <br /> <input value="Search" type="submit" class="btn" style="background-color:#ffc600;width:100px;border-radius:5px; width:200px;font-weight:bold;" />
+
+                </div>
+
+            </div>
+        }
+    </div>
+</section>
+
+
+<section class="moduler wrapper_404" style="padding:30px 0px 0px 0px;background-color:#e4e5e9;">
+    <div class="container" id="accsearchresults">
+        <h2 style="font-family:Algerian;color:black;">Top Recent Tech Jobs :</h2>
+        @foreach (var item in ViewBag.TopJobs)
+        {
+
+            <div class="col-sm-4 col-xs-12">
+                <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+                    <div class="img-wrapper">
+                        <img src="~/images/car-workshop.jpg" class="img-responsive Recent-Car-resize size" alt="this is a title">
+
+                        <div class="overlay">
+                            <div class="buttons">
+
+                                @Ajax.ActionLink("Details", "jobDetails", "TechJobsSearch", new { id = item.JAid }, new AjaxOptions()
+                           {
+                               UpdateTargetId = "jobPopup",
+                               InsertionMode = InsertionMode.Replace,
+                               OnSuccess = "myfun()"
+
+
+                           }, new { @class = "btn " })  <br />  <br />
+                            </div>
+
+                        </div>
+                    </div>
+                    <figcaption>
+
+                        <h4>
+                            <a href="#">
+                                Name : @item.ApplicationUser.FirstName @item.ApplicationUser.LastName
+                            </a><br /><br />
+                        </h4>
+
+
+                        <h4>
+                            <a href="#">
+                                WorkShop Name : @item.WorkShopName
+                            </a><br /><br />
+                        </h4>
+                        <p>
+                            @item.TechJob.Jname
+                        </p>
+                    </figcaption>
+
+                </figure>
+            </div>
+        }
+    </div>
+</section>
+
+<div class="modal fade" role="dialog" id="jobModal">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+            <div class="modal-header" style="background-image:url('../images/bgf.png');">
+                <div style="background-color:#ffc500;text-align:center;">
+
+                    <h2 class="modal-title" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Advertisment Details</h2>
+
+                </div>
+            </div>
+
+
+            <div class="modal-body" id="jobPopup" style="background-image:url('../images/bgf.png');">
+
+            </div>
+
+            <div class="modal-footer" style="background-image:url('../images/bgf.png');">
+                <button type="button" class="btn" style="background-color:#ffc500;width:150px;font-weight:bold;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br /><div style="text-align:center;">
+    <a href="~/TechJobsSearch/TechAdvIndex" class="btn" style="background-color:#333333;color:#ffc500;width:200px;">Back</a> <br /><br />
+
+</div>
+
+
+@section last_js{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script>
+        function myfun() {
+            $("#jobModal").modal({ show: true });
+        }
+       
+
+    </script>
+<script>
+    $("#Gid").on("change", function () {
+        var z = $("#Gid").val();
+        $("#d1").load("/TechJobsSearch/getcity/" + z);
+    })
+       
+</script>
+}

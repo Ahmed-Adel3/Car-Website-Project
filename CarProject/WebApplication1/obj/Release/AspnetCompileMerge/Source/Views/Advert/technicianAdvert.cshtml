@@ -1,0 +1,131 @@
+﻿@using WebApplication1.Models
+@model JobAdv
+
+@{
+    ViewBag.Title = "technicianAdvert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header_css {
+
+    <link href="~/Content/j-forms.css" rel="stylesheet" />
+    <link href="~/Content/Forms_style.css" rel="stylesheet" />
+
+}
+
+<div class="container moduler content">
+    <section class="col-xs-12">
+        <section class="main w3l" style="width:80% ;clear:both;">
+            <h1> Add Job advertisement </h1>
+            <form class="contact-forms wthree " method="post" enctype="multipart/form-data">
+                <table class="table ">
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Job</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-wrench"></i></span>
+                                @Html.DropDownListFor(a => a.Jid, ViewBag.JobList as SelectList, " Select Job ", new { @class = "form-control" })
+                                <label><i></i></label>
+                            </div>
+                        </td>
+                        <td class="col-md-3">
+                            @*Validation*@
+                            <label style="color:coral;"> @Html.ValidationMessageFor(a => a.Jid)</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">workshop Name</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+                                @Html.TextBoxFor(a => a.WorkShopName, new { @class = "form-control", placeholder = "workshop Name" })
+                            </div>
+                        </td>
+                        <td class="col-md-3">
+                            <label style="color:coral;">@Html.ValidationMessageFor(a => a.WorkShopPhone)</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">workshop Phone</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+                                @Html.TextBoxFor(a => a.WorkShopPhone, new { placeholder = "workshop Phone", @class = "form-control" })
+                            </div>
+
+                        </td>
+                        <td class="col-md-3">
+                            <label style="color:coral;">@Html.ValidationMessageFor(a => a.WorkShopPhone)</label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Governorate</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                <div class="input select">
+                                    @Html.DropDownListFor(a => a.Gid, ViewBag.GoveList as SelectList, "Select Governorate", new { @class = "form-control" })
+                                    <i></i>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-md-3">
+                            @*Validation*@
+                            <label style="color:coral;"> @Html.ValidationMessageFor(a => a.Gid)</label>
+                        </td>
+                    </tr>
+                    <tr id="d1">
+                       @*Partial View*@
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">More Address info</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                @Html.TextAreaFor(a => a.Description, new { @class = "form-control", placeholder = "More Address info" })
+                            </div>
+                        </td>
+                        <td class="col-md-3"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div style="float:left ;width:100%">
+                                <button type="submit" class="primary-btn" style="background-color:#ffc600;width:100px;border-radius:5px;">Add</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+
+            </form>
+
+        </section>
+    </section>
+</div>
+
+@section last_js{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script>
+
+        $("#Gid").on("change", function () {
+            var z = $("#Gid").val();
+            $("#d1").load("/Advert/getcity/"+z);
+        })
+</script>
+}

@@ -1,0 +1,153 @@
+﻿@*@using WebApplication1.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>Use a local account to log in.</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-default" />
+                    </div>
+                </div>
+                <p>
+                    @Html.ActionLink("Register as a new user", "Register")
+                </p>
+                @* Enable this once you have account confirmation enabled for password reset functionality
+                    <p>
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    </p>
+            }
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+
+
+@using WebApplication1.Models
+@model LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header_css {
+    <link href="~/Content/login_style.css" rel="stylesheet" />
+}
+<section class="moduler">
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+            <div class="login-form">
+
+
+                <div class="sign-in-htm">
+                    <div class="group">                     
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <label for="user" class="label">Email</label>
+                            @Html.TextBoxFor(a => a.UserName, new { @class = " input", placeholder = "Email", id = "user", type = "text" })
+
+                            <div>@Html.ValidationMessageFor(a => a.UserName)</div>
+                        
+                            <div class="group">
+
+                                <label for="pass" class="label">Password</label>
+                                @Html.TextBoxFor(a => a.Password, new { @class = " input", placeholder = "Password", type = "password", id = "pass" })
+
+                                <div>@Html.ValidationMessageFor(a => a.Password)</div>
+                            </div>
+                            <div class="group">
+                                @Html.CheckBoxFor(a => a.RememberMe , htmlAttributes: new { @checked = true ,id="check"  , @type = "checkbox" , @class=" icon" } )
+                                <label for="check">Keep me Signed in</label>
+                            </div>
+                            @*<div class="group">
+                                    <div class="checkbox">
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                    </div>
+                            </div>*@
+
+
+                            <div class="group">
+                                <input type="submit" class="button" value="Sign In">
+                            </div>
+                        }
+                        <div class="hr"></div>
+                        @*<div class="foot-lnk">
+                            <a href="#forgot">Forgot Password?</a>
+                        </div>*@
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="sign-up-htm">
+                    <br />
+                    <div class="group">
+                        <a class="button" href="~/Account/Register" style="text-align:center">
+                            Go To Sign Up Form
+                        </a>
+                    </div>
+
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <label for="tab-1">Already Member?</label>
+                    </div>
+                </div>
+
+
+
+            </div>    @*end of login-form*@
+        </div>    @*end of login-html*@
+    </div>  @*end of login-wrap*@
+</section>
+
+

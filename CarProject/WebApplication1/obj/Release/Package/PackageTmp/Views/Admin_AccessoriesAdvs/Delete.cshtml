@@ -1,0 +1,52 @@
+﻿@model WebApplication1.Models.AccessoriesAdv
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div class="container">
+    <hr />
+    <div class="col-md-4">
+        <table class="table table-bordered table-condensed table-hover">
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Manufacturer.Name)</td>
+                <td>   @Html.DisplayFor(model => model.Manufacturer.Name)    </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Accessory.AccTypeName)          </td>
+                <td>   @Html.DisplayFor(model => model.Accessory.AccTypeName)              </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Aphoto)           </td>
+                <td>   @Html.DisplayFor(model => model.Aphoto)               </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Price)            </td>
+                <td>   @Html.DisplayFor(model => model.Price)                </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.AdDate)           </td>
+                <td>   @Html.DisplayFor(model => model.AdDate)               </td>
+            </tr>
+               
+            </table>   
+               
+
+        
+
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn formbutton" /> <br/>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+    </div>
+    </div>

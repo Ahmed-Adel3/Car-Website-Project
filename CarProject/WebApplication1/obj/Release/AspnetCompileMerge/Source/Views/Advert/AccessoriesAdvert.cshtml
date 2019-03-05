@@ -1,0 +1,159 @@
+﻿@using WebApplication1.Models
+@model AccessoriesAdv
+
+@{
+    ViewBag.Title = "AccessoriesyAdvert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header_css {
+    <link href="~/Content/j-forms.css" rel="stylesheet" />
+    <link href="~/Content/Forms_style.css" rel="stylesheet" />
+}
+
+<div class="container moduler content">
+    <section class="col-xs-12">
+        <section class="main w3l" style="width:80% ;clear:both;">
+            <h1> Add Accessory advertisement </h1>
+            <form class="contact-forms wthree " method="post" enctype="multipart/form-data">
+                <table class="table ">
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Select Accessory Type</label>
+                        </td>
+                        <td class="col-md-7">
+                            <label class="input select">
+                                @Html.DropDownListFor(a => a.AccTypeId, ViewBag.accessoryList as SelectList, " Select Accessory Type ", new { @class = "form-control" })
+                                <i></i>
+                            </label>
+                        </td>
+                        <td class="col-md-3">
+                            @*Validation*@
+                            <label> @Html.ValidationMessageFor(a => a.AccTypeId)</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Select Brand</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input">
+                                @Html.DropDownListFor(a => a.Mid, ViewBag.BrandsList as SelectList, " Select Brand ", new { @class = "form-control" })
+                                <i></i>
+                            </div>
+                        </td>
+                        <td class="col-md-3"></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Price</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                                @Html.TextBoxFor(a => a.Price, new { @class = "form-control", placeholder = "Price" })
+                            </div>
+                        </td>
+                        <td class="col-md-3">
+                            @*Validation*@
+                            <label> @Html.ValidationMessageFor(a => a.Price)</label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Trad Mark</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input">
+                                @Html.TextBoxFor(a => a.TradeMark, new { @class = "form-control", placeholder = "Trad Mark" })
+                            </div>
+                        </td>
+                        <td class="col-md-3"></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Status</label>
+                        </td>
+                        <td class="col-md-7 " style="color:white">
+                            @Html.RadioButtonFor(a => a.Status, "New") New<br />
+                            @Html.RadioButtonFor(a => a.Status, "Used") Used
+                        </td>
+                        <td class="col-md-3">
+                            <label> @Html.ValidationMessageFor(a => a.Status)</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Select Governorate</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                <div class="input select">
+                                    @Html.DropDownListFor(a => a.Gid, ViewBag.GoveList as SelectList, "Select Governorate", new { @class = "form-control" })
+                                    <i></i>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-md-3">
+                            @*Validation*@
+                            <label> @Html.ValidationMessageFor(a => a.Gid)</label>
+                        </td>
+                    </tr>
+                    <tr id="d1">
+                        @*partial View*@
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Upload Photo</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div>
+                                <input type="file" name="image" class="form-control">
+                            </div>
+                        </td>
+                        <td class="col-md-3"></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">
+                            <label class="fields">Additional info</label>
+                        </td>
+                        <td class="col-md-7">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                @Html.TextAreaFor(a => a.Description, new { @class = "form-control", placeholder = "Additional info" })
+                                <span class="tooltip tooltip-right-top">Key Skills</span>
+                            </div>>
+                        </td>
+                        <td class="col-md-3"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div style="float:left ;width:100%">
+                                <button type="submit" class="primary-btn" style="background-color:#ffc600;width:100px;border-radius:5px;">Add</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </section>
+    </section>
+</div>
+
+@section last_js{
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script>
+
+        $("#Gid").on("change", function () {
+            var z = $("#Gid").val();
+            $("#d1").load("/Advert/getcity/"+z);
+        })
+</script>
+
+}

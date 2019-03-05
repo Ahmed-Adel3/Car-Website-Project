@@ -1,0 +1,69 @@
+﻿@model WebApplication1.Models.JobAdv
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JobAdv</h4>
+    <hr />
+    <div class="container">
+        <hr />
+        <div class="col-md-4">
+            <table class="table table-bordered table-condensed table-hover">
+                <tr>
+
+                    <td>  @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)</td>
+                    <td>  @Html.DisplayFor(model => model.ApplicationUser.FirstName)    </td>
+                </tr>
+                <tr>
+                    <td>  @Html.DisplayNameFor(model => model.City.CityName)            </td>
+                    <td>  @Html.DisplayFor(model => model.City.CityName)                </td>
+                </tr>
+                <tr>
+                    <td>  @Html.DisplayNameFor(model => model.Governrate.Gname)         </td>
+                    <td>  @Html.DisplayFor(model => model.Governrate.Gname)             </td>
+                </tr>
+                <tr>
+                    <td>  @Html.DisplayNameFor(model => model.TechJob.Jname)            </td>
+                    <td>  @Html.DisplayFor(model => model.TechJob.Jname)                </td>
+                </tr>
+                <tr>
+                    <td>  @Html.DisplayNameFor(model => model.WorkShopName)             </td>
+                    <td>  @Html.DisplayFor(model => model.WorkShopName)                 </td>
+                </tr>
+                <tr>
+                    <td>  @Html.DisplayNameFor(model => model.WorkShopPhone)            </td>
+                    <td>  @Html.DisplayFor(model => model.WorkShopPhone)                </td>
+                </tr>
+                <tr>
+                    <td>  @Html.DisplayNameFor(model => model.Description)              </td>
+                    <td>  @Html.DisplayFor(model => model.Description)                  </td>
+                </tr>
+                <tr>
+                    <td>  @Html.DisplayNameFor(model => model.AdDate)                   </td>
+                    <td>  @Html.DisplayFor(model => model.AdDate)                       </td>
+                </tr>
+
+            </table>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> <br />
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.JAid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

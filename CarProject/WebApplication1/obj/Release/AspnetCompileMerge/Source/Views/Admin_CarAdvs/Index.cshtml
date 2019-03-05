@@ -1,0 +1,163 @@
+﻿@model IEnumerable<WebApplication1.Models.CarAdv>
+
+@{
+    ViewBag.Title = "Car Advets";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h2>Car Advets</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="container">
+    <div class="col-md-10">
+        <div class="mainbody" style="overflow-x:auto">
+            <table class="table table-condensed table-bordered table-hover">
+               <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.City.CityName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Governrate.Gname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Manufacturer.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Color)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Year)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Km)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AirDevice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SunRoof)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Transimition)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CarPhoto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AdDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AirBag)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Power)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CenterLock)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Alarm)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Radio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ABS)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ElectricWindow)
+                </th>
+
+                <th>Operations</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.City.CityName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Governrate.Gname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Manufacturer.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Color)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Year)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Km)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AirDevice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SunRoof)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Transimition)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CarPhoto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AdDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AirBag)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Power)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CenterLock)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Alarm)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Radio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ABS)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ElectricWindow)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Aid }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Aid }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Aid })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            </div>
+        </div>
+    </div>

@@ -167,12 +167,12 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase img)
         {
-            //if (img != null)
-            //{
+            if (img != null)
+            {
                 img.SaveAs(Server.MapPath("/images/Profile/") + img.FileName);
                 string photoName = "/images/Profile/" + img.FileName;
                 model.UPhoto = photoName;
-            //}
+            }
             if (ModelState.IsValid) 
             {
                 var user = new ApplicationUser {    

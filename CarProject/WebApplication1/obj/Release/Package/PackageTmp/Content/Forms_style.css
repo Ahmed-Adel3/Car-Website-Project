@@ -1,0 +1,158 @@
+
+
+body{
+padding:0;
+margin:0;
+   background: url('../images/Slider1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+
+}
+
+
+
+/*-- main --*/
+
+.content{
+	padding:50px 0;
+}
+.content h1{
+    color: #ffc600;
+    font-size: 37px;
+    text-align: center;
+    letter-spacing: 1px;
+    font-family: 'Questrial', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+
+  h4{
+    color: #ffc600;
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+    }
+.main {
+    width: 50%;
+    margin: 45px auto;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 30px 30px;
+}
+.btn_submit
+{
+    width:50% ;
+    text-align:center ;
+     margin-left:150px
+}
+
+
+/*-- responsive media queries --*/
+
+
+@media (max-width: 1366px){
+	.main {
+		width: 60%;
+	}	
+}
+@media (max-width: 1280px){
+	.main {
+			 /*-- agileits --*/
+		width: 50%;
+	}	
+}
+@media (max-width: 1080px){
+	.main {
+		width: 50%;
+	}	
+}
+@media (max-width: 1024px){
+	.content h1 {
+		font-size: 35px;
+	}
+	.main {
+		padding: 23px 23px;
+		width: 45%;
+	}	
+}
+@media (max-width: 991px){
+	.contact-forms .main-row {
+		margin-bottom: 17px;
+	}	
+}
+@media (max-width: 800px){
+	.content h1 {
+		font-size: 30px;
+	}
+	.main {
+		width: 51%;
+	}	
+}
+@media (max-width: 768px){
+	.main {
+		width: 66%;
+	}	
+}
+
+@media (max-width: 600px){
+	.main {
+		width: 74%;
+	}	
+}
+	 /*-- w3layouts --*/
+@media (max-width: 568px){
+	
+}
+@media (max-width: 480px){
+	.contact-forms .span6 {
+		width: 100%;
+	}
+	
+	.content h1 {
+		font-size: 27px;
+	}
+	.main {
+		margin: 33px auto;
+	}
+	.contact-forms  {
+		font-size: 14px;
+		padding: 8px 18px;
+	}
+}
+@media (max-width: 414px){
+	.content h1 {
+		font-size: 25px;
+	}
+	
+}
+@media (max-width: 384px){
+	
+	.contact-forms .upload-btn {
+		padding: 5px 0;
+	}	
+}
+@media (max-width: 375px){
+	.content h1 {
+		font-size: 23px;
+	}
+	.main {
+		width: 80%;
+	}
+	.contact-forms  {
+		height: 90px;
+	}
+}
+	 /*-- agileits --*/
+@media (max-width: 320px){
+	.content h1 {
+		font-size: 19px;
+	}
+	.content {
+		padding: 40px 0;
+	}	
+	.main {
+		padding: 12px 12px;
+		width: 85%;
+	}
+	
+}

@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {    
+        @Html.AntiForgeryToken()
+    <li class="dropdown Username_style">
+
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Welcome @User.Identity.GetUserName()
+                <span class="caret"></span>
+            </a>
+        <div class="dropdown-menu">        
+                      <ul>
+                          <li>                                                           
+                                @Html.ActionLink("Profile", "Setting", "Profile", routeValues: new{ @*id = User.Identity.GetUserId()*@ } , htmlAttributes: new { title = "Profile" })                             
+                          </li>
+                          @if (User.Identity.Name == "Admin")
+                          {
+                            <li>
+                                @Html.ActionLink("Admin Panel", "Index", new { Controller = "Admin_Home" , Action="Index" }, htmlAttributes: new { title = "Admin Panel" })
+                            </li>
+                          }
+                          <li>
+                             <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>                       
+                          </li>
+
+                    </ul>                    
+        </div>
+    </li>
+    }
+}
+else
+{
+        <li>@Html.ActionLink("Sign in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+}
+
+
+
+

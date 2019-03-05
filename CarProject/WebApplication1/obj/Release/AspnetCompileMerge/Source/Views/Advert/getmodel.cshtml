@@ -1,0 +1,18 @@
+﻿
+<td class="col-md-2">
+    <label class="fields">Model</label>
+</td>
+<td id="d1" class="col-md-7">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+        <div class="input select">
+            @Html.DropDownList("ModelId", ViewBag.models as SelectList, "Select Model", new { @class = "form-control" })
+        </div>
+        <i></i>
+    </div>
+</td>
+<td class="col-md-3">
+    @*Validation*@
+    <label> @Html.ValidationMessage("ModelId")</label>
+</td>
+

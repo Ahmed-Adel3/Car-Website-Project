@@ -1,0 +1,7 @@
+﻿<div class="form-group">
+    @Html.Label("Governorate", new { @class = "col-xs-3 control_label" })
+    <div class="col-xs-6">
+        @Html.DropDownList("CityId", ViewBag.cities as SelectList, "Select city", new { @class = "col-xs-3 form-control" })
+
+    </div>
+</div>

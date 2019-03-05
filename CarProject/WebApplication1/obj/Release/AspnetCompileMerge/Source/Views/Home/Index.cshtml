@@ -1,0 +1,410 @@
+﻿@using WebApplication1.Models;
+@model IEnumerable<CarAdv>
+    @{
+        ViewBag.Title = "MY CAR";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    @section header_css{
+        <link href="~/Content/Recent-cars-style.css" rel="stylesheet" />
+
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>
+        <script src="~/Scripts/html5shiv.min.js"></script>
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <link href="~/Content/mislider.css" rel="stylesheet" />
+        <link href="~/Content/mislider-skin-cameo.css" rel="stylesheet" />
+        <script src="~/Scripts/mislider.min.js"></script>
+        <script>
+        jQuery(function ($) {
+            var slider = $('.mis-stage').miSlider({
+                //  The height of the stage in px. Options: false or positive integer. false = height is calculated using maximum slide heights. Default: false
+                stageHeight: 380,
+                //  Number of slides visible at one time. Options: false or positive integer. false = Fit as many as possible.  Default: 1
+                slidesOnStage: false,
+                //  The location of the current slide on the stage. Options: 'left', 'right', 'center'. Defualt: 'left'
+                slidePosition: 'center',
+                //  The slide to start on. Options: 'beg', 'mid', 'end' or slide number starting at 1 - '1','2','3', etc. Defualt: 'beg'
+                slideStart: 'mid',
+                //  The relative percentage scaling factor of the current slide - other slides are scaled down. Options: positive number 100 or higher. 100 = No scaling. Defualt: 100
+                slideScaling: 300,
+                //  The vertical offset of the slide center as a percentage of slide height. Options:  positive or negative number. Neg value = up. Pos value = down. 0 = No offset. Default: 0
+                offsetV: -5,
+                //  Center slide contents vertically - Boolean. Default: false
+                centerV: true,
+                //  Opacity of the prev and next button navigation when not transitioning. Options: Number between 0 and 1. 0 (transparent) - 1 (opaque). Default: .5
+                navButtonsOpacity: 0.9
+            });
+        });
+        </script>
+        <link href="~/Content/mislider-styles.css" rel="stylesheet" />
+    }
+
+
+    <!--
+           ==================================================
+           Slider Section Start
+           ================================================== -->
+    <section id="hero-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="block wow fadeInUp" data-wow-delay=".3s">
+
+                        <!-- Slider -->
+                        <section class="cd-intro">
+                            <h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s">
+                                <span>HI, WELCOME TO OUR SITE, HERE YOU CAN SEARCH FOR </span><br>
+                                <span class="cd-words-wrapper">
+                                    <b class="is-visible">USED CARS</b>
+                                    <b>ACCESSORIES</b>
+                                    <b>TECHNICIANS</b>
+                                </span>
+                            </h1>
+                        </section> <!-- cd-intro -->
+                        <!-- /.slider -->
+                        <h2 class="wow fadeInUp animated" data-wow-delay=".6s">
+                            You can also add an advertisement for your used car or get your accessories sold, you can also add an advertisement for yourself as a technician
+                        </h2>
+                        <a class="btn-lines dark light wow fadeInUp animated smooth-scroll btn btn-default btn-green" data-wow-delay=".9s" href="#works" data-section="#works">Latest Added Cars</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/#main-slider-->
+    <!--
+    ==================================================
+     About me Section Start
+    ================================================== -->
+    <section id="about" style="overflow:hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="block wow fadeInLeft" data-wow-delay=".3s" data-wow-duration="500ms">
+                        <h2>
+                            ABOUT US
+                        </h2>
+                        <p>
+                            Hello, We are a new Website offering many services. In our website you can Search for used cars ,  search for accessories and search for Technicians to fix your car
+                        </p>
+                        <p>
+                           You can also add your advertisement for your used car or for your accessories or add advertisement for yourself as a Technician
+                        </p>
+                    </div>
+
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="block wow fadeInRight" data-wow-delay=".3s" data-wow-duration="500ms" >
+
+                        <img src="~/images/author/About.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--
+    ==================================================
+    Latest Cars Section Start
+    ================================================== -->
+
+
+    <section id="works" class="works">
+        <div class="container">
+            <div class="section-heading">
+                <h1 class="title wow fadeInDown" data-wow-delay=".3s"> Latest Added Cars </h1>
+                <p class="wow fadeInDown" data-wow-delay=".5s">
+                   HERE, YOU CAN FIND THE NEWEST CARS ADDED TO OUR WEBSITE, CHECK THEM NOW!
+                </p>
+            </div>
+            </div>
+            <div class="row">
+
+                @foreach (var CarAdv in Model) 
+                {
+                    <div class="col-sm-4 col-xs-12">
+                        <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+                            <div class="img-wrapper">
+                                <img src="@CarAdv.CarPhoto.FirstOrDefault().CPhoto" class="img-responsive Recent-Car-resize" alt="this is a title">
+                                <div class="overlay">
+                                    <div class="buttons">
+                                        <a rel="gallery"  class="fancybox" href="@CarAdv.CarPhoto.FirstOrDefault().CPhoto">Zoom</a>
+                                        <a href="@Url.Action("carDetails", "CarSearch", routeValues: new { id = CarAdv.Aid })">
+                                            Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <figcaption>
+                                <h4>
+                                    <a href="#">
+                                        @CarAdv.Manufacturer.Name | @CarAdv.CarModel.ModelName
+                                    </a>
+                                </h4>
+                                <p>
+                                    @CarAdv.Price EGP
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                }       
+        </div>
+    </section>
+
+
+    <!--
+    ==================================================
+    Brand Logos Slider Section Start
+    ================================================== -->
+    <section id="works" class="works">
+
+        <div class="section-heading">
+            <h1 class="title wow fadeInDown" data-wow-delay=".3s"> Search by Brand</h1>
+            <p class="wow fadeInDown" data-wow-delay=".5s">
+                Select your Favourite brand and see available cars for sale
+            </p>
+        </div>
+        <figure>
+
+            <div class="mis-stage">
+
+                <!-- The element to select and apply miSlider to - the class is optional -->
+                <ol class="mis-slider">
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=4 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/CITREON.png" />
+                                <figcaption>CITREON</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=5 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/FIAT.png" />
+                                <figcaption>FIAT</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=1 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/AUDI.png" />
+                                <figcaption>AUDI</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=2 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/BMW.png" />
+                                <figcaption>BMW</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=6 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/HONDA.png" />
+                                <figcaption>HONDA</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=3 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/CHEVROLET.png" />
+                                <figcaption>CHEVROLET</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=7 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/HYUNDAI.png" />
+                                <figcaption>HYUNDAI</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=8 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/INFINITY.png" />
+                                <figcaption>INFINITY</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=9 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/JEEP.png" />
+                                <figcaption>JEEP</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=10 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/KIA.png" />
+                                <figcaption>KIA</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=11 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/MAZDA.png" />
+                                <figcaption>MAZDA</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=12 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/MERCEDES.png" />
+                                <figcaption>MERCEDES</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=13 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/MITSUBISHI.png" />
+                                <figcaption>MITSUBISHI</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=14 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/NISSAN.png" />
+                                <figcaption>NISSAN</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=15 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/OPEL.png" />
+                                <figcaption>OPEL</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=16 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/PEUGEOT.png" />
+                                <figcaption>PEUGEOT</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=17 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/RENAULT.png" />
+                                <figcaption>RENAULT </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=18 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/SEAT.png" />
+                                <figcaption>SEAT</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=19 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/SKODA.png" />
+                                <figcaption>SKODA</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=21 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/TOYOTA.png" />
+                                <figcaption>TOYOTA</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=22 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/VOLKSWAGEN.png" />
+                                <figcaption>VOLKSWAGEN</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                    <li class="mis-slide">
+                        <a href="@Url.Action("HomeSearch", "CarSearch",routeValues: new{ mid=20 })" class="mis-container">
+                            <figure class="fig_style">
+                                <img src="~/images/car_logos/SUBARU.png" />
+                                <figcaption>SUBARU</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+                </ol>
+            </div>
+        </figure>
+    </section>
+
+
+
+    <!-- #works -->
+    <!-- /#feature -->
+    <!--
+    ==================================================
+    Call To Action Section Start
+    ================================================== -->
+    @*<section id="call-to-action">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
+                            SO WHAT YOU THINK ?</h2>
+                            <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis,<br>possimus commodi, fugiat magnam temporibus vero magni recusandae? Dolore, maxime praesentium.</p>
+                            <a href="contact.html" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact With Me</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>*@
+
+
+
+
+
+
+
+
+
+

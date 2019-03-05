@@ -1,0 +1,148 @@
+﻿@model  WebApplication1.Models.AccessoriesAdv
+@section header_css{
+    <link href="~/Content/pgwslider.css" rel="stylesheet" />
+
+    <style>
+        td {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 17px;
+        }
+
+        .size {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+
+}
+@Html.Hidden("id", Model.AccId)
+
+
+
+
+<!------------------------slider---------------------->
+<div style="text-align:center;">
+    <img src="@Model.Aphoto" alt="Photo" width="300" />
+
+</div>
+<!----------------------------------------------------->
+<!------------------------Adv Details---------------------->
+
+
+<br /><div style="background-color:#ffc500;">
+    <div class="col-xs-6">
+
+        <h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">About @Model.Manufacturer.Name</h2>
+    </div>
+    <div class="col-xs-6" style="text-align:right;">
+        <h3 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> @Model.Price EGP</h3>
+    </div>
+    <table class="table table-striped table-bordered">
+
+        <tr>
+            <td><b>Description</b></td>
+            @if (@Model.Description == null)
+            {
+                <td>No Description</td>
+            }
+            else
+            {
+                <td>@Model.Description</td>
+            }
+
+        </tr>
+
+        <tr>
+            <td><b>Adv Date</b></td>
+            <td>@Model.AdDate</td>
+        </tr>
+        <tr>
+            <td><b>Brand</b></td>
+            <td>
+                <img src="~/images/car_logos_2/(@Model.Mid).png" width="30" height="30" />&nbsp; @Model.Manufacturer.Name
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Price</b></td>
+            <td>@Model.Price EGP</td>
+        </tr>
+        <tr>
+            <td><b>Status</b></td>
+            <td>@Model.Status</td>
+        </tr>
+
+    </table>
+</div>
+
+
+<!---------------------------------------------------------->
+<!------------------------User Datails---------------------->
+
+<br /><div style="background-color:#ffc500;">
+    <div class="col-xs-12">
+        <h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Owner InFo</h2>
+    </div>
+
+    <table class="table table-striped table-bordered">
+
+        <tr>
+            <td><b><span class="glyphicon glyphicon-user"></span> Name</b></td>
+            <td>@ViewBag.accuser.FirstName  @ViewBag.accuser.LastName</td>
+        </tr>
+
+        <tr>
+            <td><b><span class="glyphicon glyphicon-map-marker"></span> Address</b></td>
+            <td>@ViewBag.accuser.Governrate.Gname - @ViewBag.accuser.City.CityName</td>
+        </tr>
+        <tr>
+            <td><b><span class="glyphicon glyphicon-envelope"></span> E-mail</b></td>
+            <td>@ViewBag.accuser.Email</td>
+        </tr>
+        <tr>
+            <td><b><span class="glyphicon glyphicon-earphone"></span> Phone Number</b></td>
+            <td>@ViewBag.accuser.Mobile1 - @ViewBag.accuser.PhoneNumber</td>
+        </tr>
+        <tr>
+            <td><b><span class="glyphicon glyphicon-repeat"></span> Previous Advs</b></td>
+
+            <td>
+                @foreach (var ad in ViewBag.userAccAdvs)
+                {
+                    @Ajax.ActionLink("More Advs", "accDetails", "AccessoriesSearch", new { id = @ad.AccId }, new AjaxOptions()
+                   {
+                       UpdateTargetId = "accPopup",
+                       InsertionMode = InsertionMode.Replace,
+                       OnSuccess = "myfun()"
+                   })  <br />
+                    @*<a href="~/AccessoriesSearch/accDetails/@ad.AccAdvId">@ad.Manufacturer.Name </a> <br />*@
+                }
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+
+@section last_js{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script>
+        function myfun() {
+            $("#accModal").modal({ show: true });
+        }
+
+
+    </script>
+}
+
+
+
+
+
+
+
+
+
+

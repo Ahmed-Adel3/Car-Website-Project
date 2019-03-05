@@ -1,0 +1,67 @@
+﻿@model  WebApplication1.Models.JobAdv
+@section header_css{
+    <style>
+        td {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 17px;
+        }
+
+        .size {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+
+}
+@Html.Hidden("id", Model.JAid)
+
+
+<br /><div style="background-color:#ffc500;">
+
+    <table class="table table-striped table-bordered">
+
+        <tr>
+            <td><b><span class="glyphicon glyphicon-user"></span> Name</b></td>
+            <td>@Model.ApplicationUser.FirstName @Model.ApplicationUser.LastName</td>
+        </tr>
+        <tr>
+            <td><b><span class="glyphicon glyphicon-wrench"></span> Job</b></td>
+            <td>@Model.TechJob.Jname</td>
+        </tr>
+        <tr>
+            <td><b><span class="glyphicon glyphicon-earphone"></span> WorkShop Name</b></td>
+            <td>@Model.WorkShopName</td>
+        </tr>
+        <tr>
+            <td><b><span class="glyphicon glyphicon-briefcase"></span> WorkShop Phone</b></td>
+            <td>@Model.ApplicationUser.Mobile1 - @Model.ApplicationUser.PhoneNumber</td>
+        </tr>
+        <tr>
+            <td><b><span class="glyphicon glyphicon-map-marker"></span> Address</b></td>
+            <td>@Model.Governrate.Gname - @Model.City.CityName</td>
+        </tr>
+        <tr>
+
+            <td><b><span class="glyphicon glyphicon-comment"></span> Description</b></td>
+            @if (@Model.Description == null)
+            {
+                <td>No Description</td>
+            }
+            else
+            {
+                <td>@Model.Description</td>
+            }
+
+        </tr>
+
+        <tr>
+            <td><b><span class="glyphicon glyphicon-calendar"></span> Adv Date</b></td>
+            <td>@Model.AdDate</td>
+        </tr>
+
+
+    </table>
+
+
+</div>
+<!---------------------------------------------------------->

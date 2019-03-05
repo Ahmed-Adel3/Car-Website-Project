@@ -1,0 +1,8 @@
+﻿<div class="col-lg-4">
+
+    @Html.Label("City", new { @class = " control_label" })
+    </div>
+    <div class="col-lg-6">
+        @Html.DropDownList("CityId", ViewBag.cities as SelectList, "Select City", new { @class = "form-control" })
+
+    </div>

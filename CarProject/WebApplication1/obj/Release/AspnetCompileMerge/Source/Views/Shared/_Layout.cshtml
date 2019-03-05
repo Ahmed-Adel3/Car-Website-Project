@@ -1,0 +1,222 @@
+﻿@using WebApplication1.Models;
+@using Microsoft.AspNet.Identity
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Template CSS Files
+    ================================================== -->
+    <!-- Twitter Bootstrs CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Ionicons Fonts Css -->
+    <link href="~/Content/ionicons.min.css" rel="stylesheet" />
+
+     @*Login Modal Css 
+    <link href="~/Content/login_style.css" rel="stylesheet" />*@
+
+    <!-- animate css -->
+    <link href="~/Content/animate.css" rel="stylesheet" />
+
+    <!-- Hero area slider css-->
+    <link href="~/Content/slider.css" rel="stylesheet" />
+
+    <!-- owl craousel css -->
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/owl.theme.css" rel="stylesheet" />
+    <link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+
+    <!-- template main css file -->
+    <link href="~/Content/main.css" rel="stylesheet" />
+
+    <!-- responsive css -->
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+
+    <!-- font-awesome css -->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+    <!-- footer css -->
+    <link href="~/Content/Footer-with-button-logo.css" rel="stylesheet" />
+
+    @RenderSection("header_css", false)
+
+    <!-- Template Javascript Files
+    ================================================== -->
+    <!-- modernizr js -->
+    <script src="~/Scripts/vendor/modernizr-2.6.2.min.js"></script>
+
+    <!-- jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <!-- owl carouserl js -->
+    <script src="~/Scripts/owl.carousel.min.js"></script>
+
+    <!-- bootstrap js -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- wow js -->
+    <script src="~/Scripts/wow.min.js"></script>
+
+    <!-- slider js -->
+    <script src="~/Scripts/slider.js"></script>
+    <script src="~/Scripts/jquery.fancybox.js"></script>
+
+    <!-- template main js -->
+    <script src="~/Scripts/main.js"></script>
+
+    @RenderSection("header_js", false)
+
+</head>
+<body style="overflow-x:hidden;">
+    <div>
+        <!--
+        ==================================================
+        Header Section Start
+        ================================================== -->
+        <header id="top-bar" class="navbar-fixed-top animated-header">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- /responsive nav button -->
+                    <!-- logo -->
+                    <div class="navbar-brand">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="~/images/logo.png" id="logo" />
+                        </a>
+                    </div>
+                    <!-- /logo -->
+                </div>
+                <!-- main menu -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <div class="main-menu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>                           
+                                @Html.ActionLink("Home", "Index", new{ Controller="Home" ,Action="Index" }, htmlAttributes: new { title = "Home" })                               
+                            </li>
+                            <li class="dropdown"> 
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <span class="caret"></span></a>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li>@Html.ActionLink("Cars", "CarIndex", new { Controller = "CarSearch", Action = "CarIndex" }, htmlAttributes: new { title = "Cars" }) </li>
+                                        <li>@Html.ActionLink("Accessories", "AccessoriesIndex", new { Controller = "AccessoriesSearch", Action = "AccessoriesIndex" }, htmlAttributes: new { title = "Accessories" }) </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li> @Html.ActionLink("Technicians", "TechAdvIndex", new { Controller = "TechJobsSearch", Action = "TechAdvIndex" }, htmlAttributes: new { title = "Technicians" })</li>   
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" @* id="add_advert" style="background-color:#ffc600;color:#fff;background-clip:padding-box;background-size:cover"*@>Add Advert<span class="caret"></span></a>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li>@Html.ActionLink("Car", "CarAdvert", "Advert", routeValues: new {}, htmlAttributes: new { title = "Car Advertisement" })  </li>
+                                        <li>@Html.ActionLink("Accessory", "AccessoriesAdvert", "Advert", routeValues: new {}, htmlAttributes: new { title = "Accessory Advertisement" })</li>
+                                        <li>@Html.ActionLink("Technician", "technicianAdvert", "Advert", routeValues: new {}, htmlAttributes: new { title = "Technician Advertisement" })</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            
+                            <li>   @Html.ActionLink("Branches", "Index", new { Controller = "Branches", Action = "Index" }, htmlAttributes: new { title = "Branches" })</li>
+
+                            <li>   @Html.ActionLink("Contact US", "Action", new { Controller = "Home", Action = "Action" }, htmlAttributes: new { title = "Contact US" })</li>
+                            @Html.Partial("_LoginPartial")
+                        </ul>
+
+                    </div>
+                </nav>
+                <!-- /main nav -->
+            </div>
+        </header>
+            
+                    <!--
+                ==================================================
+                Render Body Start
+                ================================================== -->
+
+                    @RenderBody()
+
+                    <!--
+                ==================================================
+                Footer Section Start
+                ================================================== -->
+                    <footer id="myFooter">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <a href="@Url.Action("Index", "Home")" >
+                                        <img src="~/images/logo.png" id="logo" style="margin-top:50px;"/>
+                                    </a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <h5>Get started</h5>
+                                    <ul>
+                                        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                                       
+                                        <li><a href="@Url.Action("Register", "Account")">Sign up</a></li>
+                                        <li><a href="@Url.Action("Index", "Branches")">Find Branches</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-2">
+                                    <h5>Services</h5>
+                                    <ul>
+                                        <li><a href="@Url.Action("CarIndex", "CarSearch")">Find A Car</a></li>
+                                        <li><a  href="@Url.Action("AccessoriesIndex", "AccessoriesSearch")">Find An Accessory</a></li>
+                                        <li><a href="@Url.Action("TechAdvIndex", "TechJobsSearch")">Find A Technician</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-2">
+                                    <h5>Support</h5>
+                                    <ul>
+                                        <li><a href="@Url.Action("Action", "Home")">Contact Us</a></li>
+                                       
+                                    </ul>
+                                </div>
+                                <div class="col-sm-3" style="margin-top:40px;">
+                                    <div class="social-networks">
+                                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                        <a href="https://www.facebook.com/%D8%B9%D8%B1%D8%A8%D9%8A%D8%AA%D9%89-751651185018208/?hc_location=ufi" class="facebook"><i class="fa fa-facebook"></i></a>
+                                        <a href="https://plus.google.com/u/0/107828217843295910410" class="google"><i class="fa fa-google-plus"></i></a>
+                                    </div>
+                                    @*<button type="button" class="btn btn-default">ADD ADVERT</button>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-copyright">
+                            <p> © 2017 Copyrights Reserved to Information Technology Institute (ITI) - Mansoura Branch </p>
+                        </div>
+                    </footer>
+
+
+                </div>
+
+                @RenderSection("last_js", false)
+
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+</body>
+</html>

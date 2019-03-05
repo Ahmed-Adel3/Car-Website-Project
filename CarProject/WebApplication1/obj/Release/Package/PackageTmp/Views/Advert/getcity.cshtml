@@ -1,0 +1,17 @@
+﻿<td class="col-md-2">
+    <label class="fields">Select City</label>
+</td>
+<td id="d1" class="col-md-7">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+        <div class="input select">
+            @Html.DropDownList("CityId", ViewBag.cities as SelectList, "Select City", new { @class = "form-control" })
+        </div>
+        <i></i>
+    </div>
+</td>
+<td class="col-md-3">
+    @*Validation*@
+    <label> @Html.ValidationMessage("CityId")</label>
+</td>
+

@@ -1,0 +1,120 @@
+﻿@model WebApplication1.Models.CarAdv
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<h2>Delete Car Adv</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div class="container">
+    <hr />
+    <div class="col-md-4">
+        <table class="table table-bordered table-condensed table-hover">
+            <tr>
+               <td>   @Html.DisplayNameFor(model => model.City.CityName)     </td>       
+               <td>   @Html.DisplayFor(model => model.City.CityName)         </td> 
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Governrate.Gname)  </td>
+                <td>   @Html.DisplayFor(model => model.Governrate.Gname)      </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Manufacturer.Name) </td>
+                <td>   @Html.DisplayFor(model => model.Manufacturer.Name)     </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Color)             </td>
+                <td>   @Html.DisplayFor(model => model.Color)                 </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Year)              </td>
+                <td>   @Html.DisplayFor(model => model.Year)                  </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Cc)                </td>
+                <td>   @Html.DisplayFor(model => model.Cc)                    </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Km)                </td>
+                <td>   @Html.DisplayFor(model => model.Km)                    </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.AirDevice)         </td>
+                <td>   @Html.DisplayFor(model => model.AirDevice)             </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.SunRoof)           </td>
+                <td>   @Html.DisplayFor(model => model.SunRoof)               </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Transimition)      </td>
+                <td>   @Html.DisplayFor(model => model.Transimition)          </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Transimition)      </td>
+                <td>   @Html.DisplayFor(model => model.Transimition)          </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.CarPhoto)            </td>
+                <td>   @Html.DisplayFor(model => model.CarPhoto)                </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Price)             </td>
+                <td>   @Html.DisplayFor(model => model.Price)                 </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.AdDate)            </td>
+                <td>   @Html.DisplayFor(model => model.AdDate)                </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Description)       </td>
+                <td>   @Html.DisplayFor(model => model.Description)           </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.AirBag)            </td>
+                <td>   @Html.DisplayFor(model => model.AirBag)                </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Power)             </td>
+                <td>   @Html.DisplayFor(model => model.Power)                 </td>
+            </tr>
+            <tr>
+
+                <td>   @Html.DisplayNameFor(model => model.CenterLock)        </td>
+                <td>   @Html.DisplayFor(model => model.CenterLock)            </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Alarm)             </td>
+                <td>   @Html.DisplayFor(model => model.Alarm)                 </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.Radio)             </td>
+                <td>   @Html.DisplayFor(model => model.Radio)                 </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.ABS)               </td>
+                <td>   @Html.DisplayFor(model => model.ABS)                   </td>
+            </tr>
+            <tr>
+                <td>   @Html.DisplayNameFor(model => model.ElectricWindow)    </td>
+                <td>   @Html.DisplayFor(model => model.ElectricWindow)        </td>
+            </tr>
+          
+         </table>     
+               
+               
+              
+               
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn formbutton" /> <br/>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+    </div>
+    </div>

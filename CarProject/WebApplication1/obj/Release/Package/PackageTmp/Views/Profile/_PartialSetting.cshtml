@@ -1,0 +1,89 @@
+﻿@using WebApplication1.Models
+@model RegisterViewModel
+
+<tbody>
+    <tr>
+        <td style="color: #ffc600;">First Name</td>
+        <td>@Html.TextBoxFor(a => a.FirstName, new { @class = "form-control" })</td>
+        <td>@Html.ValidationMessageFor(a => a.FirstName)</td>
+    </tr>
+    <tr>
+        <td style="color: #ffc600;">Last Name</td>
+        <td>@Html.TextBoxFor(a => a.LastName, new { @class = "form-control" })</td>
+        <td>@Html.ValidationMessageFor(a => a.LastName)</td>
+    </tr>
+
+    <tr>
+        <td style="color: #ffc600;">Email</td>
+        <td>@Html.TextBoxFor(a => a.Email, new { @class = "form-control" })</td>
+        <td>@Html.ValidationMessageFor(a => a.Email)</td>
+    </tr>
+
+    <tr>
+        <td style="color: #ffc600;">Password</td>
+        <td>@Html.PasswordFor(a => a.Password, new { @class = "form-control"})</td>
+        <td>@Html.ValidationMessageFor(a => a.Password)</td>
+    </tr>
+
+    <tr>
+        <td style="color: #ffc600;">Confirm Password</td>
+        <td>@Html.PasswordFor(a => a.ConfirmPassword, new { @class = "form-control" })</td>
+        <td>@Html.ValidationMessageFor(a => a.ConfirmPassword)</td>
+    </tr>
+
+    <tr>
+        <td style="color: #ffc600;">Mobile</td>
+        <td>@Html.TextBoxFor(a => a.PhoneNumber, new { @class = "form-control" })</td>
+        <td>@Html.ValidationMessageFor(a => a.PhoneNumber)</td>
+
+
+    </tr>
+    <tr>
+        <td style="color: #ffc600;">Phone</td>
+        <td>@Html.TextBoxFor(a => a.Mobile1, new { @class = "form-control" })</td>
+        <td>@Html.ValidationMessageFor(a => a.Mobile1)</td>
+
+
+    </tr>
+    <tr>
+        <td style="color: #ffc600;">Governoment</td>
+        <td>
+            @Html.DropDownListFor(a => a.Gid, ViewBag.sel as SelectList, "Select Your Government", new { @class = " form-control" })
+        </td>
+        <td>@Html.ValidationMessageFor(a => a.Gid)</td>
+
+
+    </tr>
+    <tr id="d1">
+       
+        @*Partial View get city*@
+  
+
+    </tr>
+    <tr>
+        <td colspan="3">
+            <div class="form-group">
+                <input type="file" name="img" class="btn btn-warning" />
+            </div>
+        </td>
+
+    </tr>
+    <tr >
+        <td colspan="3">
+            <button class="btn btn-warning btn_submit">
+
+
+                <span class="glyphicon glyphicon-log-in"></span>
+                <span> Submit</span>
+            </button>
+        </td>
+    </tr>
+</tbody>
+
+<script>
+
+        $("#Gid").on("change", function () {
+            var z = $("#Gid").val();
+            $("#d1").load("/Profile/getcity/"+z);
+        })
+</script>

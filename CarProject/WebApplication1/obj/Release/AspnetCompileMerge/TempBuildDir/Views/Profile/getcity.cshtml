@@ -1,0 +1,5 @@
+﻿@using WebApplication1.Models
+@model RegisterViewModel
+<td style="color: #ffc600;">City</td>
+<td>@Html.DropDownListFor(Model=>Model.CityId, ViewBag.cities as SelectList, "Select Your City", new { @class = " form-control" })</td>
+<td>@Html.ValidationMessage("CityId")</td>

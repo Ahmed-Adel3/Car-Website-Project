@@ -1,0 +1,9 @@
+﻿@using WebApplication1.Models
+@model CarAdv
+<div class="col-lg-4">
+    @Html.Label("Model", new { @class = "control_label" })
+</div>
+<div class="col-lg-6">
+    @Html.DropDownListFor(a => a.ModelId, ViewBag.models as SelectList, "Select Model", new { @class = "form-control" })
+
+</div>
